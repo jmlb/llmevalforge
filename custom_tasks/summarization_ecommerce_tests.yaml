@@ -1,0 +1,108 @@
+# This test example ensures the model can take product specifications and transform them into clear, concise descriptions for customers. 
+# The task requires the model to understand technical product details and condense them into a customer-friendly format while keeping key features intact.
+
+- case_id: 001
+  category: Summarization
+  sub_category: Product Information Understanding and Generation
+  system_prompt: >
+    You are a product description expert helping to generate concise, customer-friendly product descriptions in standard paragraph form based on given technical specifications. 
+    Ensure that the product description is clear, highlights key features, and is suitable for e-commerce platforms.
+  instruction: >
+    Generate a concise product description in paragraph format for the following product specifications: 
+    '4K Ultra HD 65-inch TV, HDR10+, Dolby Vision, Smart TV with built-in Alexa, 3 HDMI ports, Wi-Fi enabled, Energy Star certified.'
+  expected_response: >
+    Experience stunning picture quality with this 65-inch 4K Ultra HD Smart TV, featuring HDR10+ and Dolby Vision for vibrant, lifelike visuals. 
+    With built-in Alexa, enjoy hands-free control, and easily connect devices through 3 HDMI ports. Energy Star certified for energy efficiency."
+  potential_challenges: null
+  difficulty_level: Easy
+
+- case_id: 002
+  category: Summarization
+  sub_category: Product Information Understanding and Generation
+  system_prompt: >
+    You are a product expert helping to generate concise, customer-friendly product descriptions based on given technical specifications. 
+    Ensure that the product description is clear, highlights key features, and is suitable for e-commerce platforms.
+  instruction: >
+    Write a brief product description  in paragraph format for a wireless mouse with the following specs: 
+    'Bluetooth 5.0, Ergonomic design, Rechargeable battery with 30-day life, Adjustable DPI up to 1600, 2 programmable buttons'.
+  expected_response: >
+    This ergonomic wireless mouse features Bluetooth 5.0, adjustable DPI up to 1600 for precision, and 2 programmable buttons for customization. 
+    Its rechargeable battery lasts up to 30 days per charge.
+  potential challenges: null
+  difficulty_level: Easy
+
+- case_id: 003
+  category: Summarization
+  sub_category: Product Information Understanding and Generation
+  system_prompt: >
+    You are a product expert helping to generate concise, customer-friendly product descriptions based on given technical specifications. 
+    Ensure that the product description is clear, highlights key features, and is suitable for e-commerce platforms.
+  instruction: >
+    Generate a product description in paragraph format for a 'High End Laptop' based on the following specs: 
+    - Processor: Intel Core i7-1260P, 12-core
+    - RAM: 16GB DDR5
+    - Storage: 1TB SSD
+    - Screen: 14" FHD, Anti-glare, Touchscreen
+    - Battery: 3-cell, 56Wh
+    - Weight: 1.2kg
+    - Operating System: Windows 11 Pro
+    - Connectivity: Wi-Fi 6E, Bluetooth 5.2
+    - Ports: 2x Thunderbolt 4, 1x USB-A, 1x HDMI 2.1'
+  expected_response: >
+    Experience the power of portability with this 14" touchscreen laptop, featuring the latest Intel Core i7 processor, 16GB DDR5 RAM, and a fast 1TB SSD for seamless multitasking and storage. 
+    Its lightweight design (1.2kg) and powerful battery make it perfect for working on the go, while Wi-Fi 6E and Thunderbolt 4 ports ensure top-tier connectivity.
+  potential_challenges: >
+    - Port specifications: The model may miss the nuance in the high-speed Thunderbolt 4 ports and HDMI 2.1, potentially confusing them with less capable ports.
+    - Battery: Describing the battery in a consumer-friendly way might result in vague wording without emphasizing battery life or portability.
+    - Weight and dimensions: The model may fail to highlight that the laptop is lightweight and portable, which is crucial for this product.
+  difficulty_level: Hard
+
+- case_id: 004
+  category: Summarization
+  sub_category: Product Information Understanding and Generation
+  system_prompt: >
+    You are a product expert helping to generate concise, customer-friendly product descriptions based on given technical specifications. 
+    Ensure that the product description is clear, highlights key features, and is suitable for e-commerce platforms.
+  instruction: >
+    Create a concise product description in paragraph format from the following technical specifications of a smart refrigerator: 
+    - Capacity: 22 cu. ft.
+    - Energy Efficiency: ENERGY STAR certified
+    - Features: Smart touchscreen, voice control, interior camera
+    - Shelves: 4 adjustable glass shelves, 2 crisper drawers
+    - Ice/Water Dispenser: Yes, with filter
+    - Temperature Zones: Dual-zone cooling
+    - Dimensions: 36" W x 70" H x 31" D
+    - Wi-Fi Connectivity: Yes
+  expected_response: >
+    This 22 cu. ft. smart refrigerator blends high-tech features with spacious storage. 
+    Control it via voice or touchscreen, and check what's inside using the interior camera, even when you're away. With dual-zone cooling and ENERGY STAR efficiency, it keeps your food fresh while saving on energy costs.
+  potential challenges: >
+    - Smart features: The model might oversimplify or misinterpret the importance of the smart touchscreen and voice control, underplaying these unique selling points.
+    - Capacity and dimensions: The model might fail to properly emphasize the refrigerator's storage capacity and size in consumer-friendly terms.
+    - Energy Efficiency: It might miss the significance of ENERGY STAR certification in reducing electricity bills.
+  difficulty_level: Hard
+
+- case_id: 005
+  category: Summarization
+  sub_category: Product Information Understanding and Generation
+  system_prompt: >
+    You are a product expert helping to generate concise, customer-friendly product descriptions based on given technical specifications. 
+    Ensure that the product description is clear, highlights key features, and is suitable for e-commerce platforms. 
+  instruction: >
+    Create a product description in paragraph format for a gaming headset with the following specs: 
+    - Type: Over-ear, wireless
+    - Battery Life: 20 hours per charge
+    - Drivers: 50mm neodymium
+    - Surround Sound: 7.1 virtual surround
+    - Microphone: Detachable, noise-canceling
+    - Connectivity: 2.4GHz wireless, USB-C
+    - Weight: 320g
+  expected_response: >
+    Immerse yourself in gaming with this wireless over-ear headset featuring 7.1 virtual surround sound and 50mm drivers for rich, detailed audio. 
+    Enjoy up to 20 hours of uninterrupted playtime, and stay connected with 2.4GHz wireless for low-latency performance. 
+    The detachable noise-canceling mic ensures crystal-clear communication during intense sessions.
+  potential_challenges: >
+    - Surround sound: The LLM might confuse virtual surround sound with actual hardware-based surround systems, which could lead to misleading descriptions.
+    - Wireless connectivity: The model may fail to mention the specific benefits of 2.4GHz wireless over other wireless frequencies.
+    - Battery life: The model might simply mention the 20-hour battery without elaborating on its importance for gamers.
+  difficulty_level: Hard

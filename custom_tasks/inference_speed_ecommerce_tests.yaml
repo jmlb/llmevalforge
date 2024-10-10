@@ -1,0 +1,75 @@
+# 
+
+- case_id: 001
+  category: Inference Speed
+  sub_category: Short Product Description
+  instruction: >
+    Generate a product description based on the following attributes.
+    Product: Wireless Earbuds
+    Brand: SoundMax
+    Color: Black
+    Battery Life: 6 hours
+    Water Resistance: IPX4
+  target_output_length: 50
+  difficulty_level: Easy
+
+- case_id: 002
+  category: Inference Speed
+  sub_category: Long Customer Query
+  instruction: Provide a helpful response to the following customer query.
+  input_text: >
+    Hello, I'm interested in buying a new laptop for both work and gaming. I need something with at least 16GB of RAM, a dedicated graphics card, and a fast processor. 
+    My budget is around $1500. I've been looking at the TechPro GamerWork 5000 and the DataFlux Extreme, but I'm not sure which one would be better for my needs. 
+    The TechPro has a slightly better graphics card, but the DataFlux has more storage. 
+    I also want to make sure that whichever laptop I choose has good cooling systems as I plan to use it for long gaming sessions. 
+    Do you have any recommendations between these two models, or perhaps a different laptop that would suit my needs? Also, do you offer any extended warranty options for gaming laptops?
+  target_output_length: 100
+  difficulty_level: Hard
+
+- case_id: 003
+  category: Inference Speed
+  sub_category: Product Comparison
+  instruction: >
+    Compare the following two products and recommend the best option.
+    Product A: Smart Fitness Watch X1
+    - Heart rate monitoring
+    - GPS tracking
+    - 5-day battery life
+    - Water-resistant up to 50m
+    - Price: $199
+    Product B: Advanced Health Tracker Pro
+    - Heart rate monitoring
+    - GPS tracking
+    - 7-day battery life
+    - Water-resistant up to 100m
+    - ECG feature
+    - Price: $249
+  target_output_length: 200
+  difficulty_level: Easy
+
+- case_id: 004
+  category: Inference Speed
+  sub_category: Complex Order Processing
+  instruction: >
+    Process the following order, checking for inventory, calculating total cost including tax and shipping, and generate an order confirmation message.
+    Customer: Jane Doe
+    Email: jane.doe@email.com
+    Shipping Address: 123 Main St, Anytown, AN 12345
+    
+    Order:
+    1. Organic Cotton T-Shirt (SKU: OCT-001) - Quantity: 2, Price: $24.99 each
+    2. Recycled Polyester Backpack (SKU: RPB-002) - Quantity: 1, Price: $59.99
+    3. Bamboo Water Bottle (SKU: BWB-003) - Quantity: 3, Price: $19.99 each
+    Shipping Method: Standard (5-7 days) - $5.99
+    Promo Code: SUMMER10 (10% off entire order)
+    Tax Rate: 8.5%
+  target_output_length: 400
+  difficulty_level: Easy
+
+- case_id: 005
+  category: Inference Speed
+  sub_category: Complex Order Processing
+  instruction: >
+    Write an essay about the market of e-commerce.
+  target_output_length: 800
+  difficulty_level: Easy
