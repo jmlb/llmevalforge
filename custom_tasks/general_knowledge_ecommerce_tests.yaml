@@ -1,0 +1,108 @@
+# The tests are considered a general knowledge task. Here's why:
+#   - Commonly Known Concepts: The difference between SSDs and HDDs is widely known and can be considered general knowledge within the domain of technology, 
+#                              particularly in consumer electronics. This type of question and response doesn't require domain-specific expertise beyond basic 
+#                              IT or computing literacy.
+#   - Widely Available Information: The information presented here is easily accessible through various sources like websites, manuals, or technical documentation. 
+#                              It’s not unique or specialized information that only professionals in a particular field would know.
+#   - Basic Definitions and Comparisons: The answer is a basic comparison of two types of storage devices, focusing on fundamental aspects such as speed, durability, 
+#                              and storage technology. It doesn’t involve in-depth technical details like storage architecture, performance benchmarking, or specific use 
+#                              cases in enterprise-level systems, which would make it more specialized.
+#
+# In sum, tasks like this require retrieving or paraphrasing widely available information, making them more suitable for a general-purpose LLM rather than a specialized one.
+
+- case_id: 001
+  category: General Knowledge
+  sub_category: Product Information Understanding and Generation
+  system_prompt: You are a helpful assistant with expertise in providing detailed product information and technical definitions.
+  instruction: What is the difference between SSD and HDD in terms of storage technology and performance?
+  expected_response_short: >
+    SSD (Solid State Drive) is a type of storage device that uses flash memory to store data, offering faster read/write speeds and better durability compared to HDD (Hard Disk Drive), 
+    which uses mechanical spinning disks to read and write data. SSDs are more efficient, quieter, and have no moving parts, making them more reliable, 
+    whereas HDDs are more cost-effective and offer larger storage capacities.
+  expected_response_long: > 
+    SSD (Solid State Drive) and HDD (Hard Disk Drive) are two different types of storage devices used in computers and other electronic devices. 
+    SSDs rely on flash memory to store data, which means they have no moving parts and use integrated circuits. 
+    This enables SSDs to deliver significantly faster read and write speeds compared to HDDs, which rely on spinning magnetic disks and a read/write head. 
+    The mechanical nature of HDDs introduces latency and noise, as well as increased susceptibility to physical damage due to the moving parts. 
+    In contrast, SSDs are more durable, quieter, and energy-efficient. 
+    While SSDs provide superior performance and reliability, they are typically more expensive per gigabyte compared to HDDs, which are still commonly used for larger, 
+    cost-effective storage solutions. HDDs are often used in applications where high storage capacity is more important than speed, such as for backup and archival purposes, 
+    whereas SSDs are preferred for operating systems, applications, and gaming for their high speed and efficiency.
+  difficulty_level: Medium
+
+- case_id: 002
+  category: General Knowledge
+  sub_category: Product Information Understanding and Generation
+  system_prompt: You are a technology expert explaining the latest advancements in display technology.
+  instruction: Can you explain the difference between LED and OLED displays in terms of picture quality and energy efficiency?
+  expected_response_short: >
+    LED displays use a backlight to illuminate pixels, while OLED displays have self-emissive pixels. 
+    OLED offers better contrast and color accuracy because each pixel can turn off completely for true blacks. 
+    OLED displays are also more energy-efficient for dark content but may have shorter lifespans.
+  expected_response_long: >
+    LED (Light Emitting Diode) displays are a type of LCD technology that uses a backlight to illuminate the pixels on the screen. 
+    This backlight is always on, even in dark scenes, which can affect contrast and black levels. 
+    OLED (Organic Light Emitting Diode) displays, on the other hand, do not require a backlight because each pixel is self-emissive, meaning it can produce its own light or turn off completely. 
+    This allows OLED displays to achieve perfect blacks and infinite contrast, resulting in superior picture quality, especially in dark scenes. 
+    In terms of energy efficiency, OLED displays can be more efficient when displaying dark content because black pixels use no power, while LED displays consume the same amount of 
+    power regardless of the content being shown. However, OLEDs may have a shorter lifespan due to potential burn-in issues, particularly with static images.
+  difficulty_level: Medium
+
+- case_id: 003
+  category: General Knowledge
+  sub_category: Product Information Understanding and Generation
+  system_prompt: You are a tech expert providing insights on various storage technologies for modern devices.
+  instruction: What are the advantages and disadvantages of using cloud storage compared to physical storage devices like external hard drives?
+  expected_response_short: >
+    Cloud storage allows for easy access and sharing from any device with internet access, offers automatic backups, and reduces the need for physical space. 
+    However, it depends on internet connectivity, may incur ongoing subscription costs, and raises concerns about data privacy. Physical storage like external hard drives provides direct access, 
+    more control over data, and no subscription costs, but can be prone to physical damage and may require manual backups.
+  expected_response_long: >
+    Cloud storage offers several advantages over traditional physical storage devices like external hard drives. One of the main benefits is accessibility — users can access their files 
+    from any device with an internet connection, making it highly convenient for people who need to access data across multiple platforms or from different locations. 
+    Cloud services also provide automatic backups, reducing the risk of data loss from hardware failures. Furthermore, they eliminate the need for physical space, making them scalable as 
+    data needs grow. However, cloud storage comes with some downsides, such as reliance on a stable internet connection, and many providers charge ongoing subscription fees, which can 
+    add up over time. There are also concerns about data privacy and security since user data is stored on remote servers. In contrast, physical storage devices like external hard drives 
+    offer more direct control over data, with no need to rely on third parties. They do not have ongoing costs after the initial purchase, but they are prone to physical damage and failure, 
+    and backups must often be managed manually, which can be cumbersome.
+  difficulty_level: Medium
+
+- case_id: 004
+  category: General Knowledge
+  sub_category: Product Information Understanding and Generation
+  system_prompt: You are an expert in consumer electronics and wearable technology.
+  instruction: What are the benefits of using a smartwatch with a built-in heart rate monitor compared to traditional fitness trackers?
+  expected_response_short: >
+    Smartwatches with built-in heart rate monitors offer real-time heart rate tracking, advanced health metrics like VO2 max, and can sync with other apps for a more 
+    comprehensive fitness overview. They also provide additional features like notifications, GPS, and music control, making them more versatile than traditional 
+    fitness trackers, which focus mainly on step counting and basic metrics.
+  expected_response_long: >
+    Smartwatches equipped with heart rate monitors provide a more holistic approach to fitness tracking compared to traditional fitness trackers. 
+    These devices continuously track heart rate throughout the day, giving users insight into resting heart rate, workout intensity, and recovery. 
+    Advanced metrics, such as VO2 max (which indicates cardiovascular fitness) and heart rate variability (a measure of stress and overall health), 
+    are often available on smartwatches, providing deeper insights into one's fitness level. Many smartwatches can also sync with other health apps, 
+    allowing for the integration of additional health data like sleep patterns, calories burned, and activity levels. In contrast, traditional fitness 
+    trackers are generally limited to basic functions like step counting, sleep tracking, and sometimes heart rate during specific activities, but lack 
+    the advanced analytics and extra functionality of smartwatches. Smartwatches also offer features beyond fitness, such as receiving notifications, using GPS 
+    for navigation, controlling music, and making payments, which add to their overall versatility.
+  difficulty_level: Medium
+
+- case_id: 005
+  category: General Knowledge
+  sub_category: Product Information Understanding and Generation
+  system_prompt: You are a nutrition expert providing detailed information on food ingredients and their health benefits.
+  instruction: What are the differences between saturated and unsaturated fats, and how do they affect heart health?
+  expected_response_long: >
+    Saturated fats are solid at room temperature and found in animal products like butter and meat, while unsaturated fats are liquid and come from plants, 
+    such as olive oil and nuts. Saturated fats can raise LDL (bad) cholesterol levels and increase the risk of heart disease, whereas unsaturated fats, 
+    particularly monounsaturated and polyunsaturated fats, can lower LDL cholesterol and improve heart health.
+  expected_response_long: >
+    Fats are an essential part of the diet, but they can affect heart health differently depending on whether they are saturated or unsaturated. 
+    Saturated fats are typically solid at room temperature and are found in animal-based foods such as butter, cheese, and red meat. 
+    They can raise levels of LDL (low-density lipoprotein) cholesterol in the blood, which is often referred to as "bad" cholesterol because it can lead to the buildup of fatty 
+    deposits in the arteries, increasing the risk of heart disease and stroke. In contrast, unsaturated fats are usually liquid at room temperature and are derived from plant 
+    sources, such as olive oil, avocados, and nuts. Unsaturated fats are further divided into monounsaturated and polyunsaturated fats, both of which have been 
+    shown to have positive effects on heart health by lowering LDL cholesterol levels. Omega-3 fatty acids, a type of polyunsaturated fat found in fish like salmon, 
+    have additional anti-inflammatory benefits and can help reduce the risk of heart disease. Replacing saturated fats with unsaturated fats in the diet 
+    is recommended to improve overall heart health.
+  difficulty_level: Medium

@@ -1,0 +1,129 @@
+# These examples can help you evaluate how well the model follows instructions in an e-commerce context, covering a variety of 
+# difficulties and scenarios commonly encountered in this domain.
+# Instruction-following task for the LLM requires:
+#   - Clear Instructions: The system prompt provides explicit rules about refund policies based on product type, time limits, method of payment, and product condition.
+#   - Interpretation of User Input: The prompt ("Hi, I bought a blender...") introduces a real-world scenario where the user is seeking a refund based on their experience 
+#     with an electronic item (the blender). The LLM needs to parse the prompt to extract relevant details, such as the product type, time of purchase, usage, and payment method.
+#   - Application of Policies: The LLM must apply the specific refund protocol (electronics: within 30 days, unused, and paid via credit card) to evaluate the eligibility for a refund. 
+#     It follows the instructions provided by the system prompt (refund rules) to determine the correct response.
+#   - Reasoning and Response Generation: Based on the protocol, the LLM concludes that the item doesn’t qualify for a full refund since it was used. It offers an alternative 
+#     (store credit or exchange) while explaining the ineligibility based on the usage condition.
+# Since the model follows the provided refund rules and applies them to the specific user scenario, it is performing an instruction-following task.
+
+- case_id: 001
+  category: Instruction Following 
+  sub_category: Customer Interaction and Support
+  system_prompt: >
+    You are a customer service representative for an online store. The company has the following refund protocols:
+    - No refund for perishable products.
+    - 30 days refund policy for electronics from the date of purchase.
+    - Full refund issued to the original payment method (cash or credit card).
+    - For refunds processed via credit card, allow 3-5 business days for the amount to reflect in the customer's account.
+    - The product must be in its original packaging and unused for a valid refund
+  instruction: >
+    Hi, I bought a laptop from your store a month ago, and it stopped working. I don't have the box anymore, but I have the receipt. 
+    I paid cash, so can I get a refund for the laptop?
+  expected_response_short: >
+    Thank you for contacting us. As per our policy, electronics must be returned within 30 days with a valid receipt for a refund.
+    However, we do require the product to be in its original packaging for the refund to be processed. 
+    Since the laptop is no longer in the original packaging, we regret to inform you that we cannot process a cash refund. 
+    If you would like, we can offer you in-store credit for future purchases.
+  expected_response_long: >
+    Hello and thank you for reaching out. I understand your concern regarding the laptop you purchased a month ago. 
+    According to our refund policy for electronics, you are eligible to request a refund within 30 days of the purchase date, provided that you have the receipt, which you do. 
+    However, our policy also requires that the product be returned in its original packaging for a full refund. 
+    Since you no longer have the original packaging, we are unable to provide a cash refund. 
+    That said, we would be happy to offer you in-store credit for the full amount, which you can use toward future purchases at any of our locations. 
+    Let us know how you would like to proceed, and we would be happy to assist you further.
+  difficulty_level: Medium
+
+- case_id: 002
+  category: instruction following
+  sub_category: Customer Interaction and Support
+  system_prompt: >
+    The refund policy is as follows:
+    - Perishable products: No refunds are allowed.
+    - Electronics: Refunds can be requested within 30 days of purchase with a valid receipt. If purchased using a credit card, the refund will be processed back to the card. 
+    If purchased using cash, the refund will be provided in-store credit.
+    - Clothing: Refunds can be requested within 60 days of purchase with a valid receipt. Refunds are processed based on the payment method (credit card/cash).
+    - Shipping fees: Non-refundable.
+    - Products must be in original packaging for a refund to be processed.
+  instruction: >
+    I ordered some fresh vegetables from your store two days ago, but they were all spoiled when they arrived. I'd like to get a refund.
+  expected_response_short: >
+    Thank you for contacting us. Unfortunately, perishable products like fresh vegetables are not eligible for refunds, according to our refund policy. We apologize for the inconvenience caused.
+  expected_response_long: >
+    Thank you for reaching out to us. We're sorry to hear that the fresh vegetables you received were spoiled. 
+    Unfortunately, per our refund policy, we cannot offer refunds for perishable items, such as fresh produce. 
+    We sincerely apologize for the inconvenience. As a gesture of goodwill, we can provide you with a discount on your next purchase. 
+    Please let us know if you'd like to proceed with this offer.
+  difficulty_level: easy
+
+- case_id: 003
+  category: instruction following
+  sub_category: Customer Interaction and Support
+  system_prompt: >
+    The refund policy is as follows:
+    - Perishable products: No refunds are allowed.
+    - Electronics: Refunds can be requested within 30 days of purchase with a valid receipt. If purchased using a credit card, the refund will be processed back to the card. 
+    If purchased using cash, the refund will be provided in-store credit.
+    - Clothing: Refunds can be requested within 60 days of purchase with a valid receipt. Refunds are processed based on the payment method (credit card/cash).
+    - Shipping fees: Non-refundable.
+    - Products must be in original packaging for a refund to be processed.
+  instruction: >
+    I purchased a shirt last month, but it doesn't fit me well. I have the receipt, but I used a gift card to pay for it. Can I return it and get a refund in cash?
+  expected_response_short: >
+    Thank you for reaching out. As per our policy, clothing can be refunded within 60 days if you have the receipt. 
+    However, since the payment was made with a gift card, the refund would be issued back to the gift card and not in cash.
+  expected_response_long: >
+    Thank you for contacting us. We understand that the shirt you purchased last month doesn't fit well. 
+    Since our policy allows clothing refunds within 60 days with a valid receipt, you are eligible for a return. 
+    However, because the item was paid for with a gift card, the refund can only be processed back to the original gift card, in line with our refund policy. 
+    Unfortunately, we cannot issue refunds in cash for purchases made with gift cards. Please bring the shirt and receipt to any of our stores, and we'd be happy to process the refund for you.
+  difficulty_level: medium
+
+- case_id: 004
+  category: instruction following
+  sub_category: Customer Interaction and Support
+  system_prompt: >
+    The refund policy is as follows:
+    - Perishable products: No refunds are allowed.
+    - Electronics: Refunds can be requested within 30 days of purchase with a valid receipt. If purchased using a credit card, the refund will be processed back to the card. If purchased using cash, the refund will be provided in-store credit.
+    - Clothing: Refunds can be requested within 60 days of purchase with a valid receipt. Refunds are processed based on the payment method (credit card/cash).
+    - Shipping fees: Non-refundable.
+    - Products must be in original packaging for a refund to be processed.
+  instruction: >
+    I ordered a TV from your website, and it arrived yesterday. However, I realized I don't need it anymore. I want to return it, but I threw away the box. 
+    I paid using my credit card. What can I do?
+  expected_response_short: >
+    Thank you for your message. Our policy states that electronics must be returned within 30 days with their original packaging. 
+    Since you no longer have the box, we are unable to process the return. We apologize for the inconvenience.
+  expected_response_long: >
+    Thank you for reaching out to us. We understand that you'd like to return the TV you ordered yesterday. 
+    Our policy allows electronics to be returned within 30 days of purchase, but they must be in their original packaging. 
+    As you've mentioned that you no longer have the box, unfortunately, we cannot process the return for a refund at this time. 
+    We're sorry for any inconvenience this may cause. If you have any other questions, feel free to let us know, and we’d be happy to assist further.
+  difficulty_level: hard
+
+- case_id: 005
+  category: instruction following
+  sub_category: Customer Interaction and Support
+  system_prompt: >
+    The refund policy is as follows:
+    - Perishable products: No refunds are allowed.
+    - Electronics: Refunds can be requested within 30 days of purchase with a valid receipt. If purchased using a credit card, the refund will be processed back to the card. If purchased using cash, the refund will be provided in-store credit.
+    - Clothing: Refunds can be requested within 60 days of purchase with a valid receipt. Refunds are processed based on the payment method (credit card/cash).
+    - Shipping fees: Non-refundable.
+    - Products must be in original packaging for a refund to be processed.
+  instruction: >
+    I bought a blender online three months ago, but it's been sitting unopened in its original packaging, and I just realized I don't need it anymore. 
+    I have the receipt, and I used my debit card. Can I return it?
+  expected_response_short: >
+    Thank you for reaching out. According to our policy, refunds for electronics must be requested within 30 days of purchase.
+    Since your purchase was made three months ago, we cannot process a refund. We apologize for any inconvenience.
+  expected_response_long: >
+    Thank you for contacting us. We understand that you would like to return a blender you purchased three months ago. 
+    As per our refund policy, electronics must be returned within 30 days of purchase with a valid receipt. 
+    Since your purchase exceeds the 30-day return window, unfortunately, we are unable to process a refund at this time. 
+    We apologize for any inconvenience this may cause. Please let us know if you have any further questions or if there's anything else we can assist with.
+  difficulty_level: easy
