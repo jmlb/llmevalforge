@@ -1,31 +1,41 @@
 ![Alt text](readme/llmevalforge_image.png)
 
-# LLMEvalForge
+# LLMEvalForge: Model Evaluation Framework
 
-# Model Evaluation Framework
+**LLMEvalForge** is a Python framework designed to automate the evaluation of Large Language Models (LLMs) in custom domains. It enables the creation of tailored test suites to assess models on specific tasks, domains, or ethical considerations. 
 
-**LLMEvalForge** is a Python framework designed to automate the evaluation of Large Language Models (LLMs) in custom domains. It enables the creation of tailored test suites to assess models on specific tasks, domains, or ethical considerations.
+# Table of Contents
 
+1. [Introduction](#introduction)
+2. [Installation Instructions](#installation-instructions)
+   - [Prerequisites](#prerequisites)
+   - [Setting Up the Environment](#setting-up-the-environment)
+   - [Running the Application](#running-the-application)
+3. [Files Overview](#files-overview)
+4. [Configuration Details](#configuration-details)
+5. [Usage Examples](#usage-examples)
+   - [Quick Start Guide](#quick-start-guide)
+   - [Sample Configurations](#sample-configurations)
+6. [Troubleshooting](#troubleshooting)
+7. [Contributing](#contributing)
+8. [Contact and Support](#contact-and-support)
+9. [License](#license)
 
 # 1. Installation Instructions
 
-`python 3.0`
+- Python version required: `python 3.10.12`
 
-`pip install -r requirements.txt`
+- Dependencies: `pip install -r requirements.txt`
 
-- Usage to run app:
-
-`streamlit run app.py`
+- Running the web app: `streamlit run app.py`
+(check section 2.2 How to use the web app)
 
 - Usage to run pipeline:
-`main.py`
 
-# 2. Configuration Details
-
-Explain the structure and purpose of the `configs.yaml` file in more detail, including how users can customize it for their specific needs.
+`python main.py --config <path_to_config file: config.yaml> --output <directory to save results of test>`
 
 
-# Files
+# 2. Files
 
 - `main.py`: this file serves as the core script for running evaluations on language models. It orchestrates the entire process from loading configurations to executing tasks and saving results.
 
@@ -40,9 +50,11 @@ Explain the structure and purpose of the `configs.yaml` file in more detail, inc
 - `prompt_library/evaluator_prompt.yaml`: this file contains the `system_prompt` and `user_prompt`. 
 
 
-## configs.yaml
+## 2.1 configs.yaml
 
-- evaluation_tasks: Lists tasks with their dataset files and parameters. In particular, the name of the task and the associated yaml file with the examples to assess the model. The path to the YAML file (`custom_tasks/summarization_ecommerce_tests.yaml`) that contains the dataset and parameters for the summarization evaluation, focusing on ecommerce-related tests.
+The config file has the following keys:
+
+- evaluation_tasks: Lists tasks with their dataset files and parameters. In particular, the name of the task and the associated yaml file with the examples to assess the model. The path to the YAML file (`custom_tasks/summarization_ecommerce_tests.yaml`) that contains the dataset and parameters for the summarization evaluation. The value of `requires_eval` is to determine if the test requires evaluation or not: for example an inference speed wouldn't require an evaluation of the candidate model.
 
 - candidate_model: Defines the model to be evaluated, including its module, class, and parameters. The provided configuration file defines parameters for using a candidate model in the `langchain_community.llms` module, specifically the `Ollama` class. The model used is `llama3.2:3b-instruct-fp16`, which is likely a 3-billion-parameter instruction-tuned version of the Llama model using half-precision (fp16) for efficiency. The `temperature` parameter is set to 0, meaning the model will produce deterministic outputs, and `num_predict` is set to 600, likely indicating the maximum token length for predictions. This setup is optimized for precise and controlled text generation.
 
@@ -55,8 +67,7 @@ Explain the structure and purpose of the `configs.yaml` file in more detail, inc
 evaluation_tasks:
   summarization:
     dataset_file: custom_tasks/summarization_ecommerce_tests.yaml
-    batch_size: 10
-    max_workers: 5
+    requires_eval: true
 
 candidate_model:
   module: langchain_community.llms
@@ -70,27 +81,32 @@ evaluator:
   name: chatgpt_evaluator
   api_key_source: env  # Can be 'env' or 'file'
   model_params:
-    model_name: gpt-4
+    model_name: gpt-4o
     temperature: 0
   prompt_file: prompt_library/evaluator_prompts.yaml  
   scorer: NumericalScorer
 ```
 </details>
 
+Users can customize the config file by adding more tests. At the moment, **LLMEvalForge** only allows to test candidate models with *ollama* framework. 
 
 
-## How to use the webapp
+## 2.2 How to use the webapp
 
-This web application is designed to evaluate the performance of a model in generating concise product descriptions from technical specifications. 
+The web application uses streamlit and can be run with:
 
-Here's a breakdown of how it works based on the image:
+`streamlit run app.py`
+
+The webapp is designed to evaluate the performance of a model in generating concise product descriptions from technical specifications. 
+
+Here's a breakdown of how it works:
 
 ![Alt text](readme/llmevalforge_tool.png)
 
 <details>
   <summary>Click to see more</summary>
 
-### Configuration Section (left panel)
+### A. Configuration Section (left panel)
 
 - `Upload config YAML file`: This allows you to upload a **configuration file** (in YAML format) that contains the parameters and settings for the model you want to evaluate.
 In the image, the `configs.yaml` file has already been loaded successfully.
@@ -102,7 +118,7 @@ In the image, the `configs.yaml` file has already been loaded successfully.
 Another option is to use "random".
 
 
-### Candidate Model Inference (right panel)
+### B. Candidate Model Inference (right panel)
 
 - `System Prompt`: this is the prompt given to the candidate model to guide its behavior. Here, the model is instructed to act as a product description expert, generating clear and customer-friendly product descriptions based on the specifications provided.
 
@@ -117,9 +133,9 @@ Another option is to use "random".
 - `Run Evaluator` Button: click the the button to evaluate the quality of the generated output based on the expected output or specific evaluation metrics. This will show the score and also feedback of the model evaluator.
 </details>
 
-## Evaluation Tests
+# 3. Evaluation Tests
 
-### 1. Writing an evaluation task
+## 3.1 Writing an evaluation task
 
 Let's use the example of summarization capability as an example.
 
@@ -156,18 +172,17 @@ Let's use the example of summarization capability as an example.
 
 - `difficulty_level`: Describes the expected difficulty level of the task, useful for designing a well-rounded evaluation set. The value can be "easy", "medium", "hard".
 
+## 3.2 List of tests
 
-### 1. Contextual Understanding
+### 3.2.1 Summarization
 
-- **Objective**: Evaluate the model's ability to generate concise, accurate summaries of longer texts.
+- **Objective**: Test the model's ability to condense information while retaining key details, coherence, and meaning.
 - **Implementation**:
   - Provide the model with lengthy text passages and assess the quality of its summaries.
-  - Use a run_summarization_test function that checks for completeness, brevity, and retention of key details.
-  - Requires a summarization_test_set.yaml file with various text examples for testing different summary lengths and complexities.
+  - Use a `run_summarization_test` function that checks for completeness, brevity, and retention of key details.
+  - Requires a `summarization_test_set.yaml` file with various text examples for testing different summary lengths and complexities.
 
-
-
-### 1. Contextual Understanding
+### 3.2.2 Contextual Understanding
 
 - **Objective**: Test the model's ability to understand and use context from previous interactions.
 - **Implementation**:
@@ -175,7 +190,7 @@ Let's use the example of summarization capability as an example.
   - Use a `run_contextual_test` function to evaluate the model's responses.
   - Requires a `contextual_test_set.yaml` file with specific tests.
 
-### 2. Fact-checking and Source Verification
+### 3.2.3 Fact-checking and Source Verification
 
 - **Objective**: Assess the model's ability to verify facts and suggest reliable sources.
 - **Implementation**:
@@ -184,7 +199,7 @@ Let's use the example of summarization capability as an example.
   - Modify `eval.py` to include `evaluate_fact_checking`.
 
 
-### 3. Consistency Testing
+### 3.2.4 Consistency Testing
 
 - **Objective**: Evaluate the model's consistency in responses to similar questions.
 - **Implementation**:
@@ -193,13 +208,17 @@ Let's use the example of summarization capability as an example.
   - Modify `eval.py` to include `evaluate_consistency` and `calculate_similarity`.
 
 
-### 4. Context Retention
+### 3.2.5 Context Retention
 
-- **Objective**: Evaluate how well the model retains and uses information from earlier parts of a conversation.
+- **Objective**:Test the model's ability to retain and accurately apply information from earlier parts of a conversation or text in later responses.
+- **Implementation**:
+  - Provide a series of prompts where important information is introduced early and referenced in later prompts.
+  - Use a `run_context_retention_test` function to evaluate the model’s consistency and accuracy in recalling and applying the earlier information.
+  - Requires a `context_retention_test_set.yaml` file with structured sequences of prompts that progressively build on prior context.
 
-<br>
-<details>
-  <summary>Additional Evaluation Ideas</summary>
+### 3.2.6 Additional Evaluation Ideas
+
+In addition to Context Retention, Summarization etc..., various other tests can be developed to evaluate a language model's capabilities across a wide range of tasks. Below are a few examples:
 
 - **Multilingual Proficiency**: Test understanding and response generation in multiple languages.
 - **Abstraction and Generalization**: Assess the application of learned concepts to new scenarios.
@@ -210,5 +229,3 @@ Let's use the example of summarization capability as an example.
 - **Bias Detection and Mitigation**: Evaluate bias recognition and mitigation.
 - **Task Adaptation**: Assess adaptation to new tasks with minimal instruction.
 - **Long-term Dependency Handling**: Test coherence in long contexts.
-
-</details>
