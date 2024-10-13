@@ -1,131 +1,214 @@
-a) Contextual Understanding: Test the model's ability to understand and use context from previous interactions or given background information.
+![Alt text](readme/llmevalforge_image.png)
+
+# LLMEvalForge
+
+# Model Evaluation Framework
+
+**LLMEvalForge** is a Python framework designed to automate the evaluation of Large Language Models (LLMs) in custom domains. It enables the creation of tailored test suites to assess models on specific tasks, domains, or ethical considerations.
 
 
-Certainly. To test the model's contextual understanding, we'll create a series of interconnected prompts that build upon each other. This will assess the model's ability to retain and use information from previous interactions. Here's an implementation for this type of test:
-Contextual Understanding Test ImplementationClick to open code
-This implementation includes:
+# 1. Installation Instructions
 
-A function run_contextual_test that takes the student model, teacher model, and a test set as inputs.
-It iterates through the test set, maintaining a conversation history.
-For each test, it provides the full conversation history to the student model, ensuring it has access to all previous context.
-The teacher model evaluates the student's response based on its relevance and use of context.
-Results are collected and saved.
+`python 3.0`
 
-To use this implementation, you'll need to create a contextual_test_set.yaml file. Here's an example of what that might look like:
-Contextual Test Set ExampleClick to open text
-This test set creates a conversation that builds upon itself, requiring the model to remember and use information from previous interactions. It covers different aspects of a trip to Paris, focusing on art and transportation, which relates back to the earlier discussion about attractions.
-To integrate this into your existing evaluation framework:
+`pip install -r requirements.txt`
 
-Add the run_contextual_test function to your eval.py file or create a new file for it.
-Create the contextual_test_set.yaml file with your specific tests.
-Add a section in your main evaluation script to run this contextual test.
+- Usage to run app:
 
-This implementation will allow you to assess the model's ability to understand and use context from previous interactions, providing a more comprehensive evaluation of its capabilities.
+`streamlit run app.py`
+
+- Usage to run pipeline:
+`main.py`
+
+# 2. Configuration Details
+
+Explain the structure and purpose of the `configs.yaml` file in more detail, including how users can customize it for their specific needs.
 
 
------------
-Certainly. I'll provide an implementation for testing a model's fact-checking and source verification capabilities. This implementation will include additions to your dataset and evaluation process.
-First, let's add some examples to your dataset:
-Fact-checking and Source Verification ExamplesClick to open code
-Now, let's modify the evaluation process to include these new examples. We'll need to update the configs.yaml file to include instructions for fact-checking tasks:
-Updated configs.yamlClick to open code
-Finally, let's update the eval.py script to include a specific evaluation metric for fact-checking tasks:
-Updated eval.pyClick to open code
-This implementation adds fact-checking and source verification tests to your evaluation process. Here's a summary of the changes:
+# Files
 
-We've added new examples to the dataset that specifically test fact-checking abilities.
-The configs.yaml file has been updated to include instructions for fact-checking tasks in both the student and teacher model prompts.
-The eval.py script has been modified to include a new evaluate_fact_checking function that assesses specific aspects of fact-checking responses.
-The main evaluation loop now applies this additional evaluation for fact-checking tasks and combines it with the general evaluation.
+- `main.py`: this file serves as the core script for running evaluations on language models. It orchestrates the entire process from loading configurations to executing tasks and saving results.
 
-To use this implementation:
+- `configs.yaml`: this `YAML` file contains configuration settings for the evaluation process. It specifies:
 
-Add the new examples to your custom_testset.yaml file.
-Update your configs.yaml file with the new prompts.
-Replace your eval.py file with the updated version.
+- `app.py`: this file is a Streamlit application that provides a user interface for running model evaluations interactively. The app is designed to make the evaluation process more accessible and user-friendly, allowing for real-time interaction and visualization of results.
 
-This setup will now test the model's ability to distinguish between facts and opinions, suggest reliable sources for verification, and identify potential misinformation. The evaluation results will reflect these additional capabilities, providing a more comprehensive assessment of the model's fact-checking and source verification skills.
+- `model_handler/evaluators.py`: this module likely contains the run_evaluation function, which is responsible for evaluating the model's responses. It uses a high-performing language model to compare the test model's output against expected responses, assigning scores and providing feedback.
 
---------
+- `task_handler/summarization.py`: this module contains the `run_summarization_task` function, which executes the summarization task. It processes the input data, runs the model, and returns the model's output for evaluation.
 
-Certainly. I'll provide an implementation to test the consistency of the model's responses across similar questions asked in different ways. This will involve adding new examples to the dataset, updating the configuration, and modifying the evaluation script.
-First, let's add some examples to the dataset:
-Consistency Test ExamplesClick to open code
-Now, let's update the configs.yaml file to include instructions for consistency testing:
-Updated configs.yamlClick to open code
-Finally, let's update the eval.py script to include a specific evaluation metric for consistency tests:
-Updated eval.pyClick to open code
-This implementation adds consistency testing to your evaluation process. Here's a summary of the changes:
-
-We've added new examples to the dataset that specifically test consistency. These examples are grouped using a group_id field.
-The configs.yaml file has been updated to include instructions for consistency testing in both the student and teacher model prompts.
-The eval.py script has been modified to include new functions:
-
-evaluate_consistency: Evaluates the consistency of responses within a group.
-calculate_similarity: A simple method to calculate the similarity between two responses.
+- `prompt_library/evaluator_prompt.yaml`: this file contains the `system_prompt` and `user_prompt`. 
 
 
-The main evaluation loop now stores responses for grouped questions and evaluates consistency after all responses have been collected.
+## configs.yaml
 
-To use this implementation:
+- evaluation_tasks: Lists tasks with their dataset files and parameters. In particular, the name of the task and the associated yaml file with the examples to assess the model. The path to the YAML file (`custom_tasks/summarization_ecommerce_tests.yaml`) that contains the dataset and parameters for the summarization evaluation, focusing on ecommerce-related tests.
 
-Add the new examples to your custom_testset.yaml file.
-Update your configs.yaml file with the new prompts.
-Replace your eval.py file with the updated version.
+- candidate_model: Defines the model to be evaluated, including its module, class, and parameters. The provided configuration file defines parameters for using a candidate model in the `langchain_community.llms` module, specifically the `Ollama` class. The model used is `llama3.2:3b-instruct-fp16`, which is likely a 3-billion-parameter instruction-tuned version of the Llama model using half-precision (fp16) for efficiency. The `temperature` parameter is set to 0, meaning the model will produce deterministic outputs, and `num_predict` is set to 600, likely indicating the maximum token length for predictions. This setup is optimized for precise and controlled text generation.
 
-This setup will now test the model's ability to provide consistent answers across different phrasings of similar questions. The evaluation results will reflect this additional capability, providing a more comprehensive assessment of the model's consistency.
-Note that the calculate_similarity function provided here is a simple implementation based on word overlap. For more sophisticated consistency evaluation, you might want to consider using more advanced natural language processing techniques, such as semantic similarity measures or embedding-based comparisons.
-To visualize the consistency scores, you can update your generate_plots function to include a new plot specifically for consistency scores. This could be a bar chart showing the consistency score for each group of related questions.
-----------------
-Context Retention:
-Evaluate how well the model retains and uses information from earlier parts of a conversation in later responses.
+- evaluator: Configures the evaluator model, including API key source, model parameters, and prompts. This section of the config file defines the settings for an evaluator named `chatgpt_evaluator`. It specifies that the API key is sourced from the environment (`env`) and that the GPT-4 model is used with a `temperature` of 0, ensuring deterministic outputs. The evaluator uses a set of prompts stored in the `prompt_library/evaluator_prompts.yaml` file and applies the `NumericalScorer` to score the outputs. This setup likely facilitates structured evaluation and scoring of responses generated by GPT-4 based on predefined prompts.
 
-Certainly! There are several additional evaluation tests we could conduct to provide a more comprehensive assessment of the model's capabilities. Here are some ideas:
+<details>
+<summary>config.yaml</summary>
 
-Multilingual Proficiency:
-Test the model's ability to understand and generate responses in multiple languages, including translation tasks.
-Context Retention:
-Evaluate how well the model retains and uses information from earlier parts of a conversation in later responses.
-Abstraction and Generalization:
-Test the model's ability to apply learned concepts to new, unseen scenarios.
-Emotional Intelligence:
-Assess the model's capability to recognize and respond appropriately to emotional cues in text.
-Code Generation and Debugging:
-Evaluate the model's proficiency in writing, understanding, and debugging code in various programming languages.
-Multimodal Understanding:
-If the model supports it, test its ability to understand and reason about information from multiple modalities (text, images, etc.).
-Adversarial Robustness:
-Test the model's performance when faced with adversarial inputs designed to trick or confuse it.
-Bias Detection and Mitigation:
-Evaluate the model's tendency to produce biased responses and its ability to recognize and mitigate bias when instructed.
-Task Adaptation:
-Assess how quickly and effectively the model can adapt to new tasks with minimal instruction or examples.
-Long-term Dependency Handling:
-Test the model's ability to maintain coherence and accuracy in very long contexts or conversations.
+```
+evaluation_tasks:
+  summarization:
+    dataset_file: custom_tasks/summarization_ecommerce_tests.yaml
+    batch_size: 10
+    max_workers: 5
 
-Let's implement one of these: the Context Retention test. This will evaluate how well the model remembers and uses information from earlier in a conversation.
+candidate_model:
+  module: langchain_community.llms
+  class: Ollama
+  params:
+    model: llama3.2:3b-instruct-fp16
+    temperature: 0
+    num_predict: 600
 
---------------
-Abstraction and Generalization: Test the model's ability to apply learned concepts to new, unseen scenarios.
+evaluator:
+  name: chatgpt_evaluator
+  api_key_source: env  # Can be 'env' or 'file'
+  model_params:
+    model_name: gpt-4
+    temperature: 0
+  prompt_file: prompt_library/evaluator_prompts.yaml  
+  scorer: NumericalScorer
+```
+</details>
 
 
 
-------------------
-Emotional Intelligence:
-Assess the model's capability to recognize and respond appropriately to emotional cues in text.
+## How to use the webapp
 
-----------
-Adversarial Robustness:
-Test the model's performance when faced with adversarial inputs designed to trick or confuse it.
+This web application is designed to evaluate the performance of a model in generating concise product descriptions from technical specifications. 
 
-Bias Detection and Mitigation:
-Evaluate the model's tendency to produce biased responses and its ability to recognize and mitigate bias when instructed.
+Here's a breakdown of how it works based on the image:
 
------------------
+![Alt text](readme/llmevalforge_tool.png)
 
-Task Adaptation:
-Assess how quickly and effectively the model can adapt to new tasks with minimal instruction or examples.
+<details>
+  <summary>Click to see more</summary>
 
-----------------
-Long-term Dependency Handling:
-Test the model's ability to maintain coherence and accuracy in very long contexts or conversations.
+### Configuration Section (left panel)
+
+- `Upload config YAML file`: This allows you to upload a **configuration file** (in YAML format) that contains the parameters and settings for the model you want to evaluate.
+In the image, the `configs.yaml` file has already been loaded successfully.
+
+- **Student Model**: The selected model for evaluation is `llama3.2:3b-instruct-fp16`, which indicates that the model is likely a version of the LLaMA language model. You can select the model to be evaluated from this dropdown menu.
+
+- **Select task file**: This dropdown allows you to select the type of task the model will perform. In this case, "summarization" has been selected, indicating that the model will be evaluated on its ability to summarize or condense information. This section offers different predefined test cases (Case 1 to Case 5) to evaluate the model. The user can select a case to test the model's capabilities on that specific example. In this image, "Case 1" is selected.
+
+Another option is to use "random".
+
+
+### Candidate Model Inference (right panel)
+
+- `System Prompt`: this is the prompt given to the candidate model to guide its behavior. Here, the model is instructed to act as a product description expert, generating clear and customer-friendly product descriptions based on the specifications provided.
+
+- `Instruction`: this specifies the task the model needs to perform. In this example, the instruction is to generate a concise product description for a 65-inch 4K Ultra HD TV with specific features like HDR10+, Dolby Vision, Alexa, HDMI ports, and Energy Star certification.
+
+- `Run Candidate Model`: click this button to run the candidate model on the selected task and generates output based on the provided instruction `model_output`, and also show a text box for the `expected Output`.
+
+- `expected output`: this field shows the ideal output the candidate model should generate. 
+
+### Output evaluation
+
+- `Run Evaluator` Button: click the the button to evaluate the quality of the generated output based on the expected output or specific evaluation metrics. This will show the score and also feedback of the model evaluator.
+</details>
+
+## Evaluation Tests
+
+### 1. Writing an evaluation task
+
+Let's use the example of summarization capability as an example.
+
+```
+- case_id: 001
+  category: Summarization
+  sub_category: Product Information Understanding and Generation
+  system_prompt: >
+    You are a product description expert helping to generate concise, customer-friendly product descriptions in standard paragraph form based on given technical specifications. 
+    Ensure that the product description is clear, highlights key features, and is suitable for e-commerce platforms.
+  instruction: >
+    Generate a concise product description in paragraph format for the following product specifications: 
+    '4K Ultra HD 65-inch TV, HDR10+, Dolby Vision, Smart TV with built-in Alexa, 3 HDMI ports, Wi-Fi enabled, Energy Star certified.'
+  expected_response: >
+    Experience stunning picture quality with this 65-inch 4K Ultra HD Smart TV, featuring HDR10+ and Dolby Vision for vibrant, lifelike visuals. 
+    With built-in Alexa, enjoy hands-free control, and easily connect devices through 3 HDMI ports. Energy Star certified for energy efficiency."
+  potential_challenges: null
+  difficulty_level: easy
+```
+
+- `case_id`: A unique identifier for the test case. This helps track and organize different test cases within the evaluation.
+
+- `category`: The general task category being tested, here it is “Summarization”, indicating that the test is related to summarizing information.
+
+- `sub_category`: A more specific classification within the category, which in this case is "Product Information Understanding and Generation," focusing on summarizing product details.
+
+- `system_prompt`: The initial setup or role assigned to the candidate model, giving context for the task (e.g., generating product descriptions).
+
+- `instruction`: A specific task for the candidate model, detailing what needs to be done based on provided inputs (e.g., creating a description from technical specs).
+
+- `expected_response`: A sample ideal response that the candidate model should generate, giving evaluators a reference for correct output.
+
+- `potential_challenges`: Identifies potential difficulties or common errors the candidate model might face, though it's null here.
+
+- `difficulty_level`: Describes the expected difficulty level of the task, useful for designing a well-rounded evaluation set. The value can be "easy", "medium", "hard".
+
+
+### 1. Contextual Understanding
+
+- **Objective**: Evaluate the model's ability to generate concise, accurate summaries of longer texts.
+- **Implementation**:
+  - Provide the model with lengthy text passages and assess the quality of its summaries.
+  - Use a run_summarization_test function that checks for completeness, brevity, and retention of key details.
+  - Requires a summarization_test_set.yaml file with various text examples for testing different summary lengths and complexities.
+
+
+
+### 1. Contextual Understanding
+
+- **Objective**: Test the model's ability to understand and use context from previous interactions.
+- **Implementation**:
+  - Create a series of interconnected prompts.
+  - Use a `run_contextual_test` function to evaluate the model's responses.
+  - Requires a `contextual_test_set.yaml` file with specific tests.
+
+### 2. Fact-checking and Source Verification
+
+- **Objective**: Assess the model's ability to verify facts and suggest reliable sources.
+- **Implementation**:
+  - Add examples to the dataset for fact-checking.
+  - Update `configs.yaml` with fact-checking instructions.
+  - Modify `eval.py` to include `evaluate_fact_checking`.
+
+
+### 3. Consistency Testing
+
+- **Objective**: Evaluate the model's consistency in responses to similar questions.
+- **Implementation**:
+  - Add consistency examples to the dataset.
+  - Update `configs.yaml` for consistency testing.
+  - Modify `eval.py` to include `evaluate_consistency` and `calculate_similarity`.
+
+
+### 4. Context Retention
+
+- **Objective**: Evaluate how well the model retains and uses information from earlier parts of a conversation.
+
+<br>
+<details>
+  <summary>Additional Evaluation Ideas</summary>
+
+- **Multilingual Proficiency**: Test understanding and response generation in multiple languages.
+- **Abstraction and Generalization**: Assess the application of learned concepts to new scenarios.
+- **Emotional Intelligence**: Evaluate recognition and response to emotional cues.
+- **Code Generation and Debugging**: Test proficiency in writing and debugging code.
+- **Multimodal Understanding**: If applicable, assess reasoning across text and images.
+- **Adversarial Robustness**: Test performance against adversarial inputs.
+- **Bias Detection and Mitigation**: Evaluate bias recognition and mitigation.
+- **Task Adaptation**: Assess adaptation to new tasks with minimal instruction.
+- **Long-term Dependency Handling**: Test coherence in long contexts.
+
+</details>

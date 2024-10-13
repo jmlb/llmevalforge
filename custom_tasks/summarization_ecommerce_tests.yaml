@@ -1,5 +1,11 @@
-# This test example ensures the model can take product specifications and transform them into clear, concise descriptions for customers. 
-# The task requires the model to understand technical product details and condense them into a customer-friendly format while keeping key features intact.
+#########################################################
+# This test example ensures the model can take product 
+# specifications and transform them into clear, concise 
+# descriptions for customers. The task requires the 
+# model to understand technical product details and 
+# condense them into a customer-friendly format while 
+# keeping key features intact.
+#########################################################
 
 - case_id: 001
   category: Summarization
@@ -14,7 +20,7 @@
     Experience stunning picture quality with this 65-inch 4K Ultra HD Smart TV, featuring HDR10+ and Dolby Vision for vibrant, lifelike visuals. 
     With built-in Alexa, enjoy hands-free control, and easily connect devices through 3 HDMI ports. Energy Star certified for energy efficiency."
   potential_challenges: null
-  difficulty_level: Easy
+  difficulty_level: easy
 
 - case_id: 002
   category: Summarization
@@ -29,7 +35,7 @@
     This ergonomic wireless mouse features Bluetooth 5.0, adjustable DPI up to 1600 for precision, and 2 programmable buttons for customization. 
     Its rechargeable battery lasts up to 30 days per charge.
   potential challenges: null
-  difficulty_level: Easy
+  difficulty_level: easy
 
 - case_id: 003
   category: Summarization
@@ -55,7 +61,7 @@
     - Port specifications: The model may miss the nuance in the high-speed Thunderbolt 4 ports and HDMI 2.1, potentially confusing them with less capable ports.
     - Battery: Describing the battery in a consumer-friendly way might result in vague wording without emphasizing battery life or portability.
     - Weight and dimensions: The model may fail to highlight that the laptop is lightweight and portable, which is crucial for this product.
-  difficulty_level: Hard
+  difficulty_level: hard
 
 - case_id: 004
   category: Summarization
@@ -80,7 +86,7 @@
     - Smart features: The model might oversimplify or misinterpret the importance of the smart touchscreen and voice control, underplaying these unique selling points.
     - Capacity and dimensions: The model might fail to properly emphasize the refrigerator's storage capacity and size in consumer-friendly terms.
     - Energy Efficiency: It might miss the significance of ENERGY STAR certification in reducing electricity bills.
-  difficulty_level: Hard
+  difficulty_level: hard
 
 - case_id: 005
   category: Summarization
@@ -105,4 +111,4 @@
     - Surround sound: The LLM might confuse virtual surround sound with actual hardware-based surround systems, which could lead to misleading descriptions.
     - Wireless connectivity: The model may fail to mention the specific benefits of 2.4GHz wireless over other wireless frequencies.
     - Battery life: The model might simply mention the 20-hour battery without elaborating on its importance for gamers.
-  difficulty_level: Hard
+  difficulty_level: hard

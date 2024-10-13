@@ -8,7 +8,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from langchain_core.prompts import ChatPromptTemplate
 
 
-def run_instruction_following_task(llm: Any, dataset: List[Dict[str, Any]], **kwargs):
+def run_general_knowledge_task(llm: Any, dataset: List[Dict[str, Any]], **kwargs):
     """
     Executes a summarization task on a given dataset using a specified language model.
 

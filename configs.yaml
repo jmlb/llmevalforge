@@ -1,0 +1,22 @@
+evaluation_tasks:
+  summarization:
+    dataset_file: custom_tasks/summarization_ecommerce_tests.yaml
+  instruction_following:
+    dataset_file: custom_tasks/instruction_following_ecommerce_tests.yaml
+
+candidate_model:
+  module: langchain_community.llms
+  class: Ollama
+  params:
+    model: llama3.2:3b-instruct-fp16
+    temperature: 0
+    num_predict: 600
+
+evaluator:
+  name: chatgpt_evaluator
+  api_key_source: env  # Can be 'env' or 'file'
+  model_params:
+    model_name: gpt-4
+    temperature: 0
+  prompt_file: prompt_library/evaluator_prompt.yaml  
+  scorer: NumericalScorer

@@ -7,8 +7,6 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_community.chat_models import ChatOpenAI
 
 
-
-
 class BaseEvaluator(ABC):
     @abstractmethod
     def evaluate(self, student_response: str, expected_response: str, **kwargs) -> Dict[str, Any]:

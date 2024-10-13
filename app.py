@@ -1,16 +1,19 @@
-import streamlit as st
+"""
+streamlit run app.py
+"""
 import os
+import streamlit as st
 import yaml
+
 from typing import Dict, Any
-import importlib
 
 # Import functions from _main.py
 from dotenv import load_dotenv
-from _main import create_model, load_task, get_api_key, load_yaml, save_yaml
+from main import create_model
+from utils.utils import load_yaml
 from model_handler.evaluators import run_evaluation
 # Import the summarization task
 from task_handler.summarization import run_summarization_task
-
 
 load_dotenv()
 
@@ -36,6 +39,10 @@ config_file = st.sidebar.file_uploader("Upload config YAML file", type="yaml")
 
 if config_file is not None:
     config = yaml.safe_load(config_file)
+    evaluator_prompts = load_yaml(config["evaluator"]["prompt_file"])
+    config["evaluator"]["system_prompt"] = evaluator_prompts["system_prompt"]
+    config["evaluator"]["user_prompt"] = evaluator_prompts["user_prompt"]
+
     st.sidebar.success("Config file loaded successfully!")
 
     # Display the name of the student model
