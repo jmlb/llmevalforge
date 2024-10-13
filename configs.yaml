@@ -1,8 +1,16 @@
 evaluation_tasks:
   summarization:
     dataset_file: custom_tasks/summarization_ecommerce_tests.yaml
-  instruction_following:
-    dataset_file: custom_tasks/instruction_following_ecommerce_tests.yaml
+    requires_eval: true
+  #instruction_following:
+  #  dataset_file: custom_tasks/instruction_following_ecommerce_tests.yaml
+  #  requires_eval: true
+  #general_knowledge:
+  #  dataset_file: custom_tasks/general_knowledge_ecommerce_tests.yaml
+  #  requires_eval: true
+  #inference_speed:
+  #  dataset_file: custom_tasks/inference_speed_ecommerce_tests.yaml
+  #  requires_eval: true 
 
 candidate_model:
   module: langchain_community.llms
@@ -14,9 +22,10 @@ candidate_model:
 
 evaluator:
   name: chatgpt_evaluator
+  path: model_handler.evaluators
   api_key_source: env  # Can be 'env' or 'file'
   model_params:
-    model_name: gpt-4
+    model_name: gpt-4o
     temperature: 0
   prompt_file: prompt_library/evaluator_prompt.yaml  
   scorer: NumericalScorer
