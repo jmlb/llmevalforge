@@ -1,6 +1,7 @@
-# The tests are considered a general knowledge task. 
-#
-#   - Commonly Known Concepts: The difference between SSDs and HDDs is widely known and can 
+###########################################################################################################
+# The tests are considered a general knowledge task.                                                      #
+#                                                                                                         #
+#   - Commonly Known Concepts: The difference between SSDs and HDDs is widely known and can               #
 #               be considered general knowledge within the domain of technology, 
 #               particularly in consumer electronics. This type of question and response doesn't
 #               require domain-specific expertise beyond basic IT or computing literacy.
@@ -17,7 +18,7 @@
 #
 # In sum, tasks like this require retrieving or paraphrasing widely available information, making them 
 # more suitable for a general-purpose LLM rather than a specialized one.
-#########################################################################################################
+##########################################################################################################
 
 - case_id: 001
   category: General Knowledge

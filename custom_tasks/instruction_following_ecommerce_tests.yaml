@@ -1,32 +1,33 @@
-# These examples can help evaluate how well the model follows 
-# instructions in an e-commerce context, covering a variety of 
-# difficulties and scenarios commonly encountered in this domain.
-# in this use case, we are using the model to answer a query from 
-# customers based on set policies
-#
-# Instruction-following task for the LLM requires:
-#   - Clear Instructions: The system prompt provides explicit rules 
-#   about refund policies based on product type, time limits, method 
-#   of payment, and product condition.
-#   - Interpretation of User Input: The prompt ("Hi, I bought a 
-#   blender...") introduces a real-world scenario where the user
-#   is seeking a refund based on their experience with an electronic
-#   item (the blender). The LLM needs to parse the prompt to extract
-#   relevant details, such as the product type, time of purchase, 
-#   usage, and payment method.
-#   - Application of Policies: The LLM must apply the specific refund 
-#   protocol (electronics: within 30 days, unused, and paid via credit
-#   card) to evaluate the eligibility for a refund. It follows the 
-#   instructions provided by the system prompt (refund rules) to 
-#   determine the correct response.
-#   - Reasoning and Response Generation: Based on the protocol, the 
-#   LLM concludes that the item doesn’t qualify for a full refund 
-#   since it was used. It offers an alternative (store credit or 
-#   exchange) while explaining the ineligibility based on the usage 
-#   condition. Since the model follows the provided refund rules and 
-#   applies them to the specific user scenario, it is performing an 
-#   instruction-following task.
-##########################################################################
+##############################################################################
+# These examples can help evaluate how well the model follows                #  
+# instructions in an e-commerce context, covering a variety of               # 
+# difficulties and scenarios commonly encountered in this domain.            # 
+# in this use case, we are using the model to answer a query from            #  
+# customers based on set policies                                            # 
+#                                                                            #  
+# Instruction-following task for the LLM requires:                           # 
+#   - Clear Instructions: The system prompt provides explicit rules          # 
+#   about refund policies based on product type, time limits, method         # 
+#   of payment, and product condition.                                       # 
+#   - Interpretation of User Input: The prompt ("Hi, I bought a              #            
+#   blender...") introduces a real-world scenario where the user             # 
+#   is seeking a refund based on their experience with an electronic         # 
+#   item (the blender). The LLM needs to parse the prompt to extract         # 
+#   relevant details, such as the product type, time of purchase,            # 
+#   usage, and payment method.                                               # 
+#   - Application of Policies: The LLM must apply the specific refund        # 
+#   protocol (electronics: within 30 days, unused, and paid via credit       # 
+#   card) to evaluate the eligibility for a refund. It follows the           # 
+#   instructions provided by the system prompt (refund rules) to             # 
+#   determine the correct response.                                          # 
+#   - Reasoning and Response Generation: Based on the protocol, the          # 
+#   LLM concludes that the item doesn’t qualify for a full refund            # 
+#   since it was used. It offers an alternative (store credit or             # 
+#   exchange) while explaining the ineligibility based on the usage          # 
+#   condition. Since the model follows the provided refund rules and         # 
+#   applies them to the specific user scenario, it is performing an          # 
+#   instruction-following task.                                              # 
+##############################################################################
 
 - case_id: 001
   category: Instruction Following 

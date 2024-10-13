@@ -1,4 +1,9 @@
-# 
+##################################################################################################
+# This task measures the inference speed of a language model by varying the length of generated  #
+# output while keeping the complexity of the input relatively simple. The goal is to assess how  #
+# quickly the model can generate responses of different lengths and to establish a correlation   #
+# between response length and latency.                                                           #
+##################################################################################################
 
 - case_id: 001
   category: Inference Speed
@@ -10,8 +15,8 @@
     Color: Black
     Battery Life: 6 hours
     Water Resistance: IPX4
-  target_output_length: 50
-  difficulty_level: Easy
+  expected_response: ""
+  difficulty_level: easy
 
 - case_id: 002
   category: Inference Speed
@@ -23,8 +28,8 @@
     The TechPro has a slightly better graphics card, but the DataFlux has more storage. 
     I also want to make sure that whichever laptop I choose has good cooling systems as I plan to use it for long gaming sessions. 
     Do you have any recommendations between these two models, or perhaps a different laptop that would suit my needs? Also, do you offer any extended warranty options for gaming laptops?
-  target_output_length: 100
-  difficulty_level: Hard
+  expected_response: ""
+  difficulty_level: easy
 
 - case_id: 003
   category: Inference Speed
@@ -44,8 +49,8 @@
     - Water-resistant up to 100m
     - ECG feature
     - Price: $249
-  target_output_length: 200
-  difficulty_level: Easy
+  expected_response: ""
+  difficulty_level: easy
 
 - case_id: 004
   category: Inference Speed
@@ -63,13 +68,13 @@
     Shipping Method: Standard (5-7 days) - $5.99
     Promo Code: SUMMER10 (10% off entire order)
     Tax Rate: 8.5%
-  target_output_length: 400
-  difficulty_level: Easy
+  expected_response: ""
+  difficulty_level: easy
 
 - case_id: 005
   category: Inference Speed
   sub_category: Complex Order Processing
   instruction: >
     Write an essay about the market of e-commerce.
-  target_output_length: 800
-  difficulty_level: Easy
+  expected_response: ""
+  difficulty_level: easy
