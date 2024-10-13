@@ -48,7 +48,10 @@ def get_api_key(config: Dict[str, Any]) -> str:
 def main(config_path: str, output_dir: str):
     load_dotenv()  # Load environment variables from .env file if it exists
     configs = load_yaml(config_path)
-    
+    evaluator_prompts = load_yaml(configs["evaluator"]["prompt_file"])
+    configs["evaluator"]["system_prompt"] = evaluator_prompts["system_prompt"]
+    configs["evaluator"]["user_prompt"] = evaluator_prompts["user_prompt"]
+
     os.makedirs(output_dir, exist_ok=True)
     
     candidate_model = create_model(configs['candidate_model'])

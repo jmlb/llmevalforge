@@ -10,7 +10,8 @@ from langchain_core.prompts import ChatPromptTemplate
 
 def run_instruction_following_task(llm: Any, dataset: List[Dict[str, Any]], **kwargs):
     """
-    Executes a summarization task on a given dataset using a specified language model.
+    Executes a Instruction Following task on a given dataset using a specified 
+    language model.
 
     Args:
         llm (Any): The model under assessment, responsible for generating text outputs.
