@@ -1,16 +1,16 @@
 evaluation_tasks:
   summarization:
     dataset_file: custom_tasks/summarization_ecommerce_tests.yaml
-    requires_eval: true
+    run_eval: false
   #instruction_following:
   #  dataset_file: custom_tasks/instruction_following_ecommerce_tests.yaml
-  #  requires_eval: true
+  #  run_eval: true
   #general_knowledge:
   #  dataset_file: custom_tasks/general_knowledge_ecommerce_tests.yaml
-  #  requires_eval: true
-  #inference_speed:
-  #  dataset_file: custom_tasks/inference_speed_ecommerce_tests.yaml
-  #  requires_eval: true 
+  #  run_eval: true
+  inference_speed:
+    dataset_file: custom_tasks/inference_speed_ecommerce_tests.yaml
+    run_eval: false 
 
 candidate_model:
   module: langchain_community.llms

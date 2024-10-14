@@ -8,6 +8,8 @@
 - case_id: 001
   category: Inference Speed
   sub_category: Short Product Description
+  system_prompt: >
+    You are a product description generator. Create concise product descriptions based on the given attributes.
   instruction: >
     Generate a product description based on the following attributes.
     Product: Wireless Earbuds
@@ -15,25 +17,30 @@
     Color: Black
     Battery Life: 6 hours
     Water Resistance: IPX4
+  expected_output_length: 50
   expected_response: ""
   difficulty_level: easy
 
 - case_id: 002
   category: Inference Speed
   sub_category: Long Customer Query
-  instruction: Provide a helpful response to the following customer query.
-  input_text: >
+  system_prompt: >
+    You are a product description generator. Create concise product descriptions based on the given attributes.
+  instruction: >
     Hello, I'm interested in buying a new laptop for both work and gaming. I need something with at least 16GB of RAM, a dedicated graphics card, and a fast processor. 
     My budget is around $1500. I've been looking at the TechPro GamerWork 5000 and the DataFlux Extreme, but I'm not sure which one would be better for my needs. 
     The TechPro has a slightly better graphics card, but the DataFlux has more storage. 
     I also want to make sure that whichever laptop I choose has good cooling systems as I plan to use it for long gaming sessions. 
     Do you have any recommendations between these two models, or perhaps a different laptop that would suit my needs? Also, do you offer any extended warranty options for gaming laptops?
   expected_response: ""
+  expected_output_length: 100
   difficulty_level: easy
 
 - case_id: 003
   category: Inference Speed
   sub_category: Product Comparison
+  system_prompt: >
+    You are a product description generator. Create concise product descriptions based on the given attributes.
   instruction: >
     Compare the following two products and recommend the best option.
     Product A: Smart Fitness Watch X1
@@ -50,11 +57,14 @@
     - ECG feature
     - Price: $249
   expected_response: ""
+  expected_output_length: 200
   difficulty_level: easy
 
 - case_id: 004
   category: Inference Speed
   sub_category: Complex Order Processing
+  system_prompt: >
+    You are a product description generator. Create concise product descriptions based on the given attributes.
   instruction: >
     Process the following order, checking for inventory, calculating total cost including tax and shipping, and generate an order confirmation message.
     Customer: Jane Doe
@@ -69,12 +79,16 @@
     Promo Code: SUMMER10 (10% off entire order)
     Tax Rate: 8.5%
   expected_response: ""
+  expected_output_length: 400
   difficulty_level: easy
 
 - case_id: 005
   category: Inference Speed
   sub_category: Complex Order Processing
+  system_prompt: >
+    You are a market research analyst specialized on e-commerce
   instruction: >
-    Write an essay about the market of e-commerce.
+    Write 3 paragraphs about the market of e-commerce.
   expected_response: ""
+  expected_output_length: 600
   difficulty_level: easy

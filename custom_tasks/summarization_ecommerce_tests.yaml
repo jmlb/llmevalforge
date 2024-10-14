@@ -34,7 +34,7 @@
   expected_response: >
     This ergonomic wireless mouse features Bluetooth 5.0, adjustable DPI up to 1600 for precision, and 2 programmable buttons for customization. 
     Its rechargeable battery lasts up to 30 days per charge.
-  potential challenges: null
+  potential_challenges: null
   difficulty_level: easy
 
 - case_id: 003
@@ -82,7 +82,7 @@
   expected_response: >
     This 22 cu. ft. smart refrigerator blends high-tech features with spacious storage. 
     Control it via voice or touchscreen, and check what's inside using the interior camera, even when you're away. With dual-zone cooling and ENERGY STAR efficiency, it keeps your food fresh while saving on energy costs.
-  potential challenges: >
+  potential_challenges: >
     - Smart features: The model might oversimplify or misinterpret the importance of the smart touchscreen and voice control, underplaying these unique selling points.
     - Capacity and dimensions: The model might fail to properly emphasize the refrigerator's storage capacity and size in consumer-friendly terms.
     - Energy Efficiency: It might miss the significance of ENERGY STAR certification in reducing electricity bills.
