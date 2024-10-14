@@ -10,7 +10,7 @@ from typing import Dict, Any
 # Import functions from _main.py
 from dotenv import load_dotenv
 from main import create_model
-from utils.utils import load_yaml
+from task_handler.utils import load_yaml
 from model_handler.evaluators import run_evaluation
 # Import the summarization task
 from task_handler.summarization import run_summarization_task

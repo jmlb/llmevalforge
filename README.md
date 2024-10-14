@@ -6,20 +6,22 @@
 
 # Table of Contents
 
-1. [Introduction](#introduction)
-2. [Installation Instructions](#installation-instructions)
-   - [Prerequisites](#prerequisites)
-   - [Setting Up the Environment](#setting-up-the-environment)
-   - [Running the Application](#running-the-application)
-3. [Files Overview](#files-overview)
-4. [Configuration Details](#configuration-details)
-5. [Usage Examples](#usage-examples)
-   - [Quick Start Guide](#quick-start-guide)
-   - [Sample Configurations](#sample-configurations)
-6. [Troubleshooting](#troubleshooting)
-7. [Contributing](#contributing)
-8. [Contact and Support](#contact-and-support)
-9. [License](#license)
+1. [Installation Instructions]()
+2. [Files]()
+  - 2.1. [configs.yaml]()
+  - 2.2. [How to use the webapp]()
+
+3. [Evaluation Tests](#)
+  - 3.1 [Writing an evaluation task]()
+  - 3.2 [List of tests]()
+    - 3.2.1 [Summarization]()
+    - 3.2.2 [Contextual Understanding]()
+    - 3.2.3 [Fact-checking and Source Verification]()
+    - 3.2.4 [Consistency checking]()
+    - 3.2.5 [Context Retention]()
+  - 3.3 [Additional Evaluation tests]()
+
+---
 
 # 1. Installation Instructions
 
@@ -54,7 +56,7 @@
 
 The config file has the following keys:
 
-- evaluation_tasks: Lists tasks with their dataset files and parameters. In particular, the name of the task and the associated yaml file with the examples to assess the model. The path to the YAML file (`custom_tasks/summarization_ecommerce_tests.yaml`) that contains the dataset and parameters for the summarization evaluation. The value of `requires_eval` is to determine if the test requires evaluation or not: for example an inference speed wouldn't require an evaluation of the candidate model.
+- evaluation_tasks: Lists tasks with their dataset files and parameters. In particular, the name of the task and the associated yaml file with the examples to assess the model. The path to the YAML file (`custom_tasks/summarization_ecommerce_tests.yaml`) that contains the dataset and parameters for the summarization evaluation. The value of `run_eval` is to determine if the test woudl run an evaluation of the output of the candidate model: for example an inference speed wouldn't require an evaluation of the candidate model.
 
 - candidate_model: Defines the model to be evaluated, including its module, class, and parameters. The provided configuration file defines parameters for using a candidate model in the `langchain_community.llms` module, specifically the `Ollama` class. The model used is `llama3.2:3b-instruct-fp16`, which is likely a 3-billion-parameter instruction-tuned version of the Llama model using half-precision (fp16) for efficiency. The `temperature` parameter is set to 0, meaning the model will produce deterministic outputs, and `num_predict` is set to 600, likely indicating the maximum token length for predictions. This setup is optimized for precise and controlled text generation.
 
@@ -67,7 +69,7 @@ The config file has the following keys:
 evaluation_tasks:
   summarization:
     dataset_file: custom_tasks/summarization_ecommerce_tests.yaml
-    requires_eval: true
+    run_eval: true
 
 candidate_model:
   module: langchain_community.llms
@@ -216,7 +218,7 @@ Let's use the example of summarization capability as an example.
   - Use a `run_context_retention_test` function to evaluate the model’s consistency and accuracy in recalling and applying the earlier information.
   - Requires a `context_retention_test_set.yaml` file with structured sequences of prompts that progressively build on prior context.
 
-### 3.2.6 Additional Evaluation Ideas
+## 3.3 Additional Evaluation Ideas
 
 In addition to Context Retention, Summarization etc..., various other tests can be developed to evaluate a language model's capabilities across a wide range of tasks. Below are a few examples:
 
@@ -229,3 +231,8 @@ In addition to Context Retention, Summarization etc..., various other tests can 
 - **Bias Detection and Mitigation**: Evaluate bias recognition and mitigation.
 - **Task Adaptation**: Assess adaptation to new tasks with minimal instruction.
 - **Long-term Dependency Handling**: Test coherence in long contexts.
+
+
+# TODO 
+
+[ ] edit ethical_reasoning test, common sense test and code the associated run_tasks

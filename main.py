@@ -4,7 +4,7 @@ import importlib
 from typing import Dict, Any
 from dotenv import load_dotenv
 
-from utils.utils import load_yaml, save_yaml
+from task_handler.utils import load_yaml, save_yaml_custom_sort
 
 
 def create_model(model_config: Dict[str, Any]):
@@ -102,8 +102,7 @@ def run_task(task_name: str, model: Any, evaluator: Any, dataset: Dict[str, Any]
     """
     task_func = load_task(task_name)
     dataset = task_func(model, dataset, **task_config)
-    
-    if not task_config["requires_eval"]:
+    if not task_config["run_eval"]:
         return dataset
     
     evaluator_config.update(task_config)
@@ -176,7 +175,7 @@ def main(config_path: str, output_dir: str):
             raise ValueError(f"The dataset for task {task_name} is empty")
         
         results = run_task(task_name, candidate_model, evaluator, dataset, task_config, evaluator_config)
-        save_yaml(results, os.path.join(output_dir, f"{task_name}_results.yaml"))
+        save_yaml_custom_sort(results, os.path.join(output_dir, f"{task_name}_results.yaml"))
         print(f"{task_name.capitalize()} task completed. Results saved to {task_name}_results.yaml")
 
 
