@@ -4,7 +4,38 @@ import importlib
 from typing import Dict, Any
 from dotenv import load_dotenv
 
-from task_handler.utils import load_yaml, save_yaml_custom_sort
+from task_handler.utils import load_yaml, save_yaml_custom_sort, create_directory
+
+
+def load_configurations(config_path: str) -> Dict[str, Any]:
+    """
+    Load and process configuration files for the evaluation framework.
+
+    This function reads the main configuration file specified by the 
+    `config_path` and processes it to include evaluator prompts. It ensures 
+    that the evaluator's system and user prompts are correctly loaded and 
+    integrated into the configuration dictionary.
+
+    Args:
+        config_path (str): The file path to the main configuration YAML file.
+
+    Returns:
+        Dict[str, Any]: A dictionary containing the complete configuration 
+        settings, including evaluator prompts.
+
+    Notes:
+        - The function uses `load_yaml` to read YAML files and expects the 
+          configuration to include a path to a prompt file under the 'evaluator' 
+          section.
+        - The evaluator prompts are extracted from the specified prompt file 
+          and added to the main configuration under 'system_prompt' and 
+          'user_prompt'.
+    """
+    configs = load_yaml(config_path)
+    evaluator_prompts = load_yaml(configs["evaluator"]["prompt_file"])
+    configs["evaluator"]["system_prompt"] = evaluator_prompts["system_prompt"]
+    configs["evaluator"]["user_prompt"] = evaluator_prompts["user_prompt"]
+    return configs
 
 
 def create_model(model_config: Dict[str, Any]):
@@ -147,29 +178,83 @@ def get_api_key(config: Dict[str, Any]) -> str:
         raise ValueError(f"Unsupported API key source: {api_key_source}")
 
 
-def main(config_path: str, output_dir: str):
-    load_dotenv()  # Load environment variables from .env file if it exists
-    configs = load_yaml(config_path)
-    evaluator_prompts = load_yaml(configs["evaluator"]["prompt_file"])
-    configs["evaluator"]["system_prompt"] = evaluator_prompts["system_prompt"]
-    configs["evaluator"]["user_prompt"] = evaluator_prompts["user_prompt"]
+def setup_evaluator(evaluator_config: Dict[str, Any]):
+    """
+    Initialize and configure the evaluator model with the necessary API key.
 
-    os.makedirs(output_dir, exist_ok=True)
-    
-    candidate_model = create_model(configs['candidate_model'])
-    
-    # Get the API key
-    api_key = get_api_key(configs['evaluator'])
+    This function retrieves the API key based on the provided evaluator 
+    configuration and ensures it is correctly set within the model parameters. 
+    It then loads the evaluator model using the updated configuration.
+
+    Args:
+        evaluator_config (Dict[str, Any]): A dictionary containing configuration 
+            details for the evaluator. It should include:
+            - 'api_key_source': Specifies the source of the API key ('env' or 'file').
+            - 'api_key_file': (Optional) The file path to read the API key from, 
+              required if 'api_key_source' is 'file'.
+            - 'model_params': A dictionary of parameters for the evaluator model, 
+              which will be updated with the API key.
+
+    Returns:
+        Callable: The evaluator model loaded and ready for use.
+
+    Raises:
+        ValueError: If the API key cannot be retrieved, a ValueError is raised 
+            indicating that the key is missing and needs to be set.
+
+    Notes:
+        - The function uses `get_api_key` to fetch the API key based on the 
+          specified source in the configuration.
+        - The API key is added to the 'model_params' within the evaluator 
+          configuration before loading the evaluator model.
+    """
+    api_key = get_api_key(evaluator_config)
     if not api_key:
         raise ValueError("OpenAI API key not found. Please set the OPENAI_API_KEY environment variable or specify the api_key_file in the config.")
     
-    # Add the API key to the evaluator config
-    configs['evaluator']['model_params']['openai_api_key'] = api_key
-    
-    evaluator = load_evaluator(configs['evaluator'])
-    evaluator_config = configs["evaluator"]
+    evaluator_config['model_params']['openai_api_key'] = api_key
+    return load_evaluator(evaluator_config)
 
-    for task_name, task_config in configs['evaluation_tasks'].items():
+
+def run_tasks(tasks_config: Dict[str, Any], candidate_model, evaluator, evaluator_config: Dict[str, Any], output_dir: str) -> None:
+    """
+    Execute a series of evaluation tasks using a specified model and evaluator.
+
+    This function iterates over a set of tasks defined in the configuration, 
+    loading the corresponding datasets and executing each task using the 
+    provided candidate model and evaluator. The results of each task are 
+    saved to the specified output directory.
+
+    Args:
+        tasks_config (Dict[str, Any]): A dictionary containing configuration 
+            details for each task. Each task configuration should include:
+            - 'dataset_file': The path to the dataset file for the task.
+        candidate_model: The model instance used to perform the tasks.
+        evaluator: The evaluator function or model used to assess the model's 
+            output.
+        evaluator_config (Dict[str, Any]): Configuration settings for the 
+            evaluator, which may include parameters for evaluation criteria 
+            and scoring.
+        output_dir (str): The directory where the results of each task will 
+            be saved.
+
+    Raises:
+        ValueError: If a dataset for a task is empty, a ValueError is raised 
+            indicating the issue.
+
+    Returns:
+        None: This function does not return a value. It saves the results of 
+        each task to the specified output directory.
+
+    Notes:
+        - The function loads each task's dataset using the `load_yaml` 
+          function and checks for non-empty datasets.
+        - It calls the `run_task` function to execute each task and evaluates 
+          the results if required.
+        - Results are saved using the `save_yaml_custom_sort` function, 
+          ensuring they are organized and accessible for further analysis.
+    """
+    for task_name, task_config in tasks_config.items():
         dataset = load_yaml(task_config['dataset_file'])
         if not dataset:
             raise ValueError(f"The dataset for task {task_name} is empty")
@@ -177,6 +262,20 @@ def main(config_path: str, output_dir: str):
         results = run_task(task_name, candidate_model, evaluator, dataset, task_config, evaluator_config)
         save_yaml_custom_sort(results, os.path.join(output_dir, f"{task_name}_results.yaml"))
         print(f"{task_name.capitalize()} task completed. Results saved to {task_name}_results.yaml")
+
+
+def main(config_path: str, output_dir: str):
+    load_dotenv()  # Load environment variables from .env file if it exists
+
+    configs = load_configurations(config_path)
+    create_directory(output_dir)
+    
+    candidate_model = create_model(configs['candidate_model'])
+    evaluator = setup_evaluator(configs['evaluator'])
+    
+    evaluator = load_evaluator(configs['evaluator'])
+
+    run_tasks(configs['evaluation_tasks'], candidate_model, evaluator, configs["evaluator"], output_dir)
 
 
 if __name__ == "__main__":
