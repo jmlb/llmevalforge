@@ -18,28 +18,42 @@ SORTED_NEW_KEYS = ["response_candidate_model"]
 SORTED_EVAL_KEYS = ["score", "scorer_feedback"]
 
 
-def run_summarization_task(llm: Any, dataset: List[Dict[str, Any]], **kwargs):
+def run_summarization_task(llm: Any, 
+                           dataset: List[Dict[str, Any]], 
+                           **kwargs
+                           ):
     """
-    Executes a summarization task on a given dataset using a specified language model.
+    Executes a summarization task on a given dataset using 
+    a specified language model.
 
     Args:
-        llm (Any): The model under assessment, responsible for generating text outputs.
-        dataset (List[Dict[str, Any]]): A dataset where each record is a dictionary containing task-specific fields.
+        llm (Any): The model under assessment, responsible 
+        for generating text outputs.
+        dataset (List[Dict[str, Any]]): A dataset where 
+        each record is a dictionary containing task-specific 
+        fields.
         **kwargs: Additional configuration parameters.
 
     Returns:
-        List[Dict[str, Any]]: The updated dataset with model responses.
+        List[Dict[str, Any]]: The updated dataset with model 
+        responses.
     """
     validate_test_dataset(dataset, required_keys=SORTED_LEGACY_KEYS)
 
-    prompt_template = ChatPromptTemplate.from_messages([("system", "{system_prompt}"), ("user", "{instruction}")])
+    prompt_template = ChatPromptTemplate.from_messages(
+        [("system", "{system_prompt}"), 
+         ("user", "{instruction}")])
     chain_llm = prompt_template | llm
-    all_fields = SORTED_LEGACY_KEYS + SORTED_NEW_KEYS + SORTED_EVAL_KEYS
+    all_fields = SORTED_LEGACY_KEYS +\
+                 SORTED_NEW_KEYS +\
+                 SORTED_EVAL_KEYS
 
     for ix, record in enumerate(tqdm(dataset)):
         system_prompt = dedent(record["system_prompt"])
         user_query = dedent(record["instruction"])
-        out = chain_llm.invoke({"system_prompt": system_prompt, "instruction": user_query})
+        out = chain_llm.invoke(
+            {"system_prompt": system_prompt, 
+             "instruction": user_query})
             
         record["response_candidate_model"] = out
         # Append eval keys

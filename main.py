@@ -210,7 +210,10 @@ def setup_evaluator(evaluator_config: Dict[str, Any]):
     """
     api_key = get_api_key(evaluator_config)
     if not api_key:
-        raise ValueError("OpenAI API key not found. Please set the OPENAI_API_KEY environment variable or specify the api_key_file in the config.")
+        raise ValueError(
+            "OpenAI API key not found. Please set the OPENAI_API_KEY"
+            "environment variable or specify the api_key_file in the config."
+            )
     
     evaluator_config['model_params']['openai_api_key'] = api_key
     return load_evaluator(evaluator_config)
@@ -280,8 +283,12 @@ def main(config_path: str, output_dir: str):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run various tests on language models.")
-    parser.add_argument("--config", default="configs.yaml", help="Path to the configuration file")
-    parser.add_argument("--output", default="output", help="Directory to save result files")
+    parser.add_argument("--config", 
+                        default="configs.yaml", 
+                        help="Path to the configuration file")
+    parser.add_argument("--output", 
+                        default="output", 
+                        help="Directory to save result files")
     
     args = parser.parse_args()
     main(args.config, args.output)
