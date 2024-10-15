@@ -21,6 +21,8 @@ SORTED_NEW_KEYS = ["response_candidate_model",
                    "output_word_count",
                    "words_per_second"]
 
+SORTED_EVAL_KEYS = ["score", "scorer_feedback"]
+
 
 def run_inference_speed_task(llm: Any, dataset: List[Dict[str, Any]], **kwargs):
     """
@@ -40,8 +42,13 @@ def run_inference_speed_task(llm: Any, dataset: List[Dict[str, Any]], **kwargs):
         ("system", "{system_prompt}"),
         ("human", "{instruction}")
     ])
-
+    all_fields = SORTED_LEGACY_KEYS + SORTED_NEW_KEYS + SORTED_EVAL_KEYS
+    
     def process_record(record: Dict[str, Any]) -> Dict[str, Any]:
+        record["response_candidate_model"] = None
+        record["inference_time"] = None
+        record["output_word_count"] = None
+        record["words_per_second"] = None
         try:
             system_prompt = dedent(record["system_prompt"])
             instruction = dedent(record["instruction"])
@@ -63,12 +70,11 @@ def run_inference_speed_task(llm: Any, dataset: List[Dict[str, Any]], **kwargs):
             record["words_per_second"] = word_count / inference_time if inference_time > 0 else 0
         except Exception as error:
             print(f"An error occurred while processing record: {error}")
-            record["response_candidate_model"] = None
-            record["inference_time"] = None
-            record["output_word_count"] = None
-            record["words_per_second"] = None
-        
-        return custom_sort(record, SORTED_LEGACY_KEYS + SORTED_NEW_KEYS)
+
+        for fld in SORTED_EVAL_KEYS:
+            record[fld] = None
+
+        return custom_sort(record, all_fields)
 
     for ix, record in tqdm(enumerate(dataset), desc="Processing inference speed tasks"):
         updated_record = process_record(record)
