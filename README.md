@@ -180,35 +180,23 @@ Let's use the example of summarization capability as an example.
 
 - **Objective**: Test the model's ability to condense information while retaining key details, coherence, and meaning.
 - **Implementation**:
-  - Provide the model with lengthy text passages and assess the quality of its summaries.
-  - Use a `run_summarization_test` function that checks for completeness, brevity, and retention of key details.
+  - Provide the model with lengthy text passages and assess the quality of its summaries, or its ability to convert bullet points text to paragraph format text. 
+  - Use a `run_summarization_test` function to generate responses from the candidate model.
   - Requires a `summarization_test_set.yaml` file with various text examples for testing different summary lengths and complexities.
 
 ### 3.2.2 Contextual Understanding
 
 - **Objective**: Test the model's ability to understand and use context from previous interactions.
 - **Implementation**:
-  - Create a series of interconnected prompts.
-  - Use a `run_contextual_test` function to evaluate the model's responses.
-  - Requires a `contextual_test_set.yaml` file with specific tests.
+  - Create a series of interconnected prompts t obe stored in `contextual_test_set.yaml`
+  - Use a `run_contextual_test`  function to generate responses from the candidate model.
 
-### 3.2.3 Fact-checking and Source Verification
+### 3.2.3 General knowledge
 
 - **Objective**: Assess the model's ability to verify facts and suggest reliable sources.
 - **Implementation**:
-  - Add examples to the dataset for fact-checking.
-  - Update `configs.yaml` with fact-checking instructions.
-  - Modify `eval.py` to include `evaluate_fact_checking`.
-
-
-### 3.2.4 Consistency Testing
-
-- **Objective**: Evaluate the model's consistency in responses to similar questions.
-- **Implementation**:
-  - Add consistency examples to the dataset.
-  - Update `configs.yaml` for consistency testing.
-  - Modify `eval.py` to include `evaluate_consistency` and `calculate_similarity`.
-
+  - Create a series of question/answers on facts related to the domain of interest.
+  - Use a `run_general_knowledge_task` function to generate responses from the candidate model.
 
 ### 3.2.5 Context Retention
 
@@ -231,8 +219,10 @@ In addition to Context Retention, Summarization etc..., various other tests can 
 - **Bias Detection and Mitigation**: Evaluate bias recognition and mitigation.
 - **Task Adaptation**: Assess adaptation to new tasks with minimal instruction.
 - **Long-term Dependency Handling**: Test coherence in long contexts.
+- **Consistency Testing**: Evaluate the model's consistency in responses to similar questions.
 
-
+---
 # TODO 
 
 [ ] edit ethical_reasoning test, common sense test and code the associated run_tasks
+[ ] preserve sorting of keys in saved yaml after evaluation
