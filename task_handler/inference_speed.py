@@ -24,27 +24,40 @@ SORTED_NEW_KEYS = ["response_candidate_model",
 SORTED_EVAL_KEYS = ["score", "scorer_feedback"]
 
 
-def run_inference_speed_task(llm: Any, dataset: List[Dict[str, Any]], **kwargs):
+def run_inference_speed_task(llm: Any, 
+                             dataset: List[Dict[str, Any]], 
+                             **kwargs
+                             ):
     """
-    Executes an inference speed task on a given dataset using a specified language model.
+    Executes an inference speed task on a given dataset using 
+    a specified language model.
 
     Args:
-        llm (Any): The model under assessment, responsible for generating outputs.
-        dataset (List[Dict[str, Any]]): A dataset where each record is a dictionary containing task-specific fields.
+        llm (Any): The model under assessment, responsible 
+        for generating outputs.
+        dataset (List[Dict[str, Any]]): A dataset where each 
+        record is a dictionary containing task-specific 
+        fields.
         **kwargs: Additional configuration parameters.
 
     Returns:
-        List[Dict[str, Any]]: The updated dataset with model responses and inference times.
+        List[Dict[str, Any]]: The updated dataset with model
+        responses and inference times.
     """
-    validate_test_dataset(dataset, required_keys=SORTED_LEGACY_KEYS)
+    validate_test_dataset(dataset, 
+                          required_keys=SORTED_LEGACY_KEYS)
 
     prompt_template = ChatPromptTemplate.from_messages([
         ("system", "{system_prompt}"),
         ("human", "{instruction}")
     ])
-    all_fields = SORTED_LEGACY_KEYS + SORTED_NEW_KEYS + SORTED_EVAL_KEYS
-    
-    def process_record(record: Dict[str, Any]) -> Dict[str, Any]:
+    all_fields = SORTED_LEGACY_KEYS +\
+                 SORTED_NEW_KEYS +\
+                 SORTED_EVAL_KEYS
+
+    def process_record(
+            record: Dict[str, Any]
+            ) -> Dict[str, Any]:
         record["response_candidate_model"] = None
         record["inference_time"] = None
         record["output_word_count"] = None
@@ -57,8 +70,14 @@ def run_inference_speed_task(llm: Any, dataset: List[Dict[str, Any]], **kwargs):
             chain_llm = prompt_template | llm
             # Measure inference time
             start_time = time.time()
-            out = chain_llm.invoke({"system_prompt": f"{system_prompt}", 
-                                   "instruction": f"{instruction} Generate approximately {target_length} words."})
+            instruction_with_length = (f"""
+                                       {instruction} 
+                                       Generate approximately 
+                                       {target_length} words.
+                                       """).strip()
+            out = chain_llm.invoke({
+                "system_prompt": f"{system_prompt}", 
+                "instruction": instruction_with_length})
             end_time = time.time()
 
             inference_time = end_time - start_time
@@ -76,7 +95,8 @@ def run_inference_speed_task(llm: Any, dataset: List[Dict[str, Any]], **kwargs):
 
         return custom_sort(record, all_fields)
 
-    for ix, record in tqdm(enumerate(dataset), desc="Processing inference speed tasks"):
+    for ix, record in tqdm(enumerate(dataset), 
+                           desc="Processing inference speed tasks"):
         updated_record = process_record(record)
         dataset[ix] = updated_record
 

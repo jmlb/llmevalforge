@@ -75,17 +75,22 @@ def run_evaluation(dataset: List[Dict[str, Any]], **kwargs) -> List[Dict[str, An
 
     user_prompt_template = dedent(kwargs.get('user_prompt', ""))
     system_prompt = dedent(kwargs.get('system_prompt', ""))
-    prompt_template = ChatPromptTemplate.from_messages([("system", "{system_prompt}"), ("human", "{user_prompt}")])
+    prompt_template = ChatPromptTemplate.from_messages(
+        [("system", "{system_prompt}"), 
+         ("human", "{user_prompt}")]
+         )
     chain_llm = prompt_template | llm
 
     scorer_class = globals()[kwargs.get('scorer', 'NumericalScorer')]
     scorer = scorer_class()
     
     for ix, record in enumerate(tqdm(dataset)):
-        user_prompt = user_prompt_template.format(student_system_prompt=record["system_prompt"],
-                                                  student_instruction=record["instruction"], 
-                                                  expected_response=record["expected_response"], 
-                                                  student_response=record["response_candidate_model"]) 
+        user_prompt = user_prompt_template.format(
+            student_system_prompt=record["system_prompt"],
+            student_instruction=record["instruction"], 
+            expected_response=record["expected_response"], 
+            student_response=record["response_candidate_model"]
+            ) 
         # Invoke the chain with the actual user instruction
         out = chain_llm.invoke({"system_prompt": system_prompt, "user_prompt": user_prompt})
         out = out.content
