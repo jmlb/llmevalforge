@@ -33,25 +33,42 @@
   category: Instruction Following 
   sub_category: Customer Interaction and Support
   system_prompt: >
-    You are a customer service representative for an online store. The company has the following refund protocols:
+    You are a customer service representative for an online store. The company has 
+    the following refund protocols:
     - No refund for perishable products.
     - 30 days refund policy for electronics from the date of purchase.
     - Full refund issued to the original payment method (cash or credit card).
-    - For refunds processed via credit card, allow 3-5 business days for the amount to reflect in the customer's account.
+    - For refunds processed via credit card, allow 3-5 business days for the amount 
+    to reflect in the customer's account.
     - The product must be in its original packaging and unused for a valid refund
   instruction: >
-    Hi, I bought a laptop from your store a month ago, and it stopped working. I don't have the box anymore, but I have the receipt. 
+    Hi, I bought a laptop from your store a month ago, and it stopped working. I don't 
+    have the box anymore, but I have the receipt. 
     I paid cash, so can I get a refund for the laptop?
   expected_response: >
-    Thank you for contacting us. As per our policy, electronics must be returned within 30 days with a valid receipt for a refund.
-    However, we do require the product to be in its original packaging for the refund to be processed. 
-    Since the laptop is no longer in the original packaging, we regret to inform you that we cannot process a cash refund. 
+    Thank you for contacting us. As per our policy, electronics must be returned within 
+    30 days with a valid receipt for a refund.
+    However, we do require the product to be in its original packaging for the refund 
+    to be processed. 
+    Since the laptop is no longer in the original packaging, we regret to inform you 
+    that we cannot process a cash refund. 
     If you would like, we can offer you in-store credit for future purchases.
   potential_challenges: >
-    - Contextual Understanding: The LLM needs to correctly interpret the system prompt, which outlines specific refund policies, and apply these policies accurately to the user's situation. Understanding both the timeline (30-day return window) and the packaging condition (original packaging required) is crucial for generating the correct response.
-    - Policy Application: The model needs to apply the rules in the system prompt to the user's query (i.e., the laptop purchase being over 30 days and no original packaging). This involves reasoning based on conditional requirements (receipt is provided, but the packaging is missing).
-    - Language Generation: The model must generate a polite, professional response that communicates the reason for the denial clearly while offering an alternative (in-store credit).
-    - Instruction Following: The model has to balance between strictly following the rules and managing customer relations by offering alternatives, which is a nuanced task.
+    - Contextual Understanding: The LLM needs to correctly interpret the system prompt, 
+    which outlines specific refund policies, and apply these policies accurately to the 
+    user's situation. Understanding both the timeline (30-day return window) and the 
+    packaging condition (original packaging required) is crucial for generating the 
+    correct response.
+    - Policy Application: The model needs to apply the rules in the system prompt to 
+    the user's query (i.e., the laptop purchase being over 30 days and no original 
+    packaging). This involves reasoning based on conditional requirements (receipt is 
+    provided, but the packaging is missing).
+    - Language Generation: The model must generate a polite, professional response that 
+    communicates the reason for the denial clearly while offering an alternative 
+    (in-store credit).
+    - Instruction Following: The model has to balance between strictly following the 
+    rules and managing customer relations by offering alternatives, which is a nuanced 
+    task.
   difficulty_level: medium
 
 - case_id: 002
@@ -60,15 +77,20 @@
   system_prompt: >
     The refund policy is as follows:
     - Perishable products: No refunds are allowed.
-    - Electronics: Refunds can be requested within 30 days of purchase with a valid receipt. If purchased using a credit card, the refund will be processed back to the card. 
+    - Electronics: Refunds can be requested within 30 days of purchase with a valid receipt. 
+    If purchased using a credit card, the refund will be processed back to the card. 
     If purchased using cash, the refund will be provided in-store credit.
-    - Clothing: Refunds can be requested within 60 days of purchase with a valid receipt. Refunds are processed based on the payment method (credit card/cash).
+    - Clothing: Refunds can be requested within 60 days of purchase with a valid receipt. 
+    Refunds are processed based on the payment method (credit card/cash).
     - Shipping fees: Non-refundable.
     - Products must be in original packaging for a refund to be processed.
   instruction: >
-    I ordered some fresh vegetables from your store two days ago, but they were all spoiled when they arrived. I'd like to get a refund.
+    I ordered some fresh vegetables from your store two days ago, but they were all spoiled 
+    when they arrived. I'd like to get a refund.
   expected_response: >
-    Thank you for contacting us. Unfortunately, perishable products like fresh vegetables are not eligible for refunds, according to our refund policy. We apologize for the inconvenience caused.
+    Thank you for contacting us. Unfortunately, perishable products like fresh vegetables are 
+    not eligible for refunds, according to our refund policy. We apologize for the 
+    inconvenience caused.
   potential_challenges: null
   difficulty_level: easy
 
@@ -76,36 +98,56 @@
   category: instruction following
   sub_category: Customer Interaction and Support
   system_prompt: >
-  You are a customer service representative for an online store. The company has the following policies:
+  You are a customer service representative for an online store. The company has the following 
+  policies:
   Refund Policy:
     - No refunds for digital goods, gift cards, and perishable products.
     - Electronics can be refunded within 30 days of purchase.
-    - Clothing can be refunded within 60 days of purchase if the product is in its original condition and packaging.
-    - Refunds will be issued to the original payment method. If paid by credit card, it takes 3-5 business days to process the refund.
+    - Clothing can be refunded within 60 days of purchase if the product is in its original 
+    condition and packaging.
+    - Refunds will be issued to the original payment method. If paid by credit card, it takes 
+    3-5 business days to process the refund.
   Exchange Policy:
-    - Exchanges are allowed for clothing only within 60 days of purchase, provided the item is in original condition.
-    - If the new item is of lesser value, the difference will be refunded to the original payment method. If of greater value, the customer will be charged for the difference.
+    - Exchanges are allowed for clothing only within 60 days of purchase, provided the item is 
+    in original condition.
+    - If the new item is of lesser value, the difference will be refunded to the original payment 
+    method. If of greater value, the customer will be charged for the difference.
   Shipping Policy:
     - Free shipping is provided for purchases over $50.
     - Expedited shipping is available for an additional $10.
-    - Customers must cover the cost of shipping for returns and exchanges, except for defective products.
+    - Customers must cover the cost of shipping for returns and exchanges, except for defective 
+    products.
   Loyalty Program:
     - Customers earn 2 points per $1 spent. 100 points = $1 store credit.
     - Points cannot be used to purchase gift cards, digital goods, or for shipping fees.
     - Points expire after 1 year of inactivity.
   instruction: >
-    I purchased a shirt last month, but it doesn't fit me well. I have the receipt, but I used a gift card to pay for it. Can I return it and get a refund in cash?
+    I purchased a shirt last month, but it doesn't fit me well. I have the receipt, but I used a 
+    gift card to pay for it. Can I return it and get a refund in cash?
   expected_response >
-    Thank you for reaching out, and I'm sorry to hear about the issues you're facing. Let me address each of your concerns:
-    1. **Laptop Refund**: Since the laptop is defective, you are eligible for a full refund, even though it's been 40 days. As per our policy, refunds are issued to the original payment methods. This means:
+    Thank you for reaching out, and I'm sorry to hear about the issues you're facing. Let me 
+    address each of your concerns:
+    1. **Laptop Refund**: Since the laptop is defective, you are eligible for a full refund, even 
+    though it's been 40 days. As per our policy, refunds are issued to the original payment methods. 
+    This means:
       - The portion paid with store credit will be refunded as store credit.
       - The portion paid with the gift card will be refunded back to the gift card.
-      - The portion paid with your credit card will be refunded to the card, and it may take 3-5 business days to reflect.
-    2. **Jeans Exchange**: You can exchange the jeans for a smaller size as long as they're still in their original condition. If the new pair of jeans is of lesser value, the difference will be refunded to your original payment method, following the same breakdown as mentioned above. If the new pair is of greater value, you will need to pay the price difference.
-    3. **Loyalty Points**: You should have earned 400 loyalty points for the purchase, and I apologize for the confusion. It's possible that the points haven't been credited due to an issue with our system. I will escalate this to our support team to ensure the points are credited to your account.
-    4. **Shipping Costs**: You won't need to pay for shipping for the laptop return since it's defective. However, for the jeans exchange, you will need to cover the shipping costs. If you need expedited shipping for the replacement jeans, there will be an additional $10 fee.
+      - The portion paid with your credit card will be refunded to the card, and it may take 3-5 
+      business days to reflect.
+    2. **Jeans Exchange**: You can exchange the jeans for a smaller size as long as they're still 
+    in their original condition. If the new pair of jeans is of lesser value, the difference will 
+    be refunded to your original payment method, following the same breakdown as mentioned above. 
+    If the new pair is of greater value, you will need to pay the price difference.
+    3. **Loyalty Points**: You should have earned 400 loyalty points for the purchase, and I 
+    apologize for the confusion. It's possible that the points haven't been credited due to an 
+    issue with our system. I will escalate this to our support team to ensure the points are 
+    credited to your account.
+    4. **Shipping Costs**: You won't need to pay for shipping for the laptop return since it's 
+    defective. However, for the jeans exchange, you will need to cover the shipping costs. If you 
+    need expedited shipping for the replacement jeans, there will be an additional $10 fee.
 
-    Please let me know if you'd like assistance with arranging the returns and exchanges, or if you have any further questions.
+    Please let me know if you'd like assistance with arranging the returns and exchanges, or if you 
+    have any further questions.
   potential_challenges: null
   difficulty_level: hard
 
@@ -113,57 +155,99 @@
   category: instruction following
   sub_category: Customer Interaction and Support
   system_prompt: >
-    You are a customer service representative for an online store. The company has the following refund protocols:
+    You are a customer service representative for an online store. The company has the following 
+    refund protocols:
     - No refund for perishable products.
     - 30 days refund policy for electronics from the date of purchase.
     - Full refund issued to the original payment method (cash, credit card, or gift card).
-    - For refunds processed via credit card, allow 3-5 business days for the amount to reflect in the customer's account.
+    - For refunds processed via credit card, allow 3-5 business days for the amount to reflect 
+    in the customer's account.
     - The product must be in its original packaging and unused for a valid refund.
     - Refunds for international purchases will incur a 10% restocking fee.
     - For purchases made during special holiday sales, refunds can only be processed as store credit.
     - No refunds for products labeled as 'final sale.'
   instruction: >
-    I purchased a set of headphones as a gift for my brother last month, but he didn't like them. I paid with a credit card during the Black Friday sale, and now I want to return them. However, I opened the packaging to check if the headphones worked, but they are unused. 
-    Additionally, I no longer have the original receipt. I live in Canada, and I don't want store credit. Can you issue the refund back to my credit card?
+    I purchased a set of headphones as a gift for my brother last month, but he didn't like them. 
+    I paid with a credit card during the Black Friday sale, and now I want to return them. However, 
+    I opened the packaging to check if the headphones worked, but they are unused. 
+    Additionally, I no longer have the original receipt. I live in Canada, and I don't want store 
+    credit. Can you issue the refund back to my credit card?
   expected_response: >
     Thank you for reaching out. I understand that you would like to return the headphones.
-    Unfortunately, as the purchase was made during our Black Friday sale, our policy allows refunds only in the form of store credit for such holiday purchases. Since the product is opened but unused, you would still be eligible for a refund if it was not a 'final sale' item, even without the receipt, provided we can confirm your purchase in our system. However, as you're located in Canada, the refund will incur a 10% restocking fee.
-    Please note that we cannot issue a refund back to your credit card in this case, but the store credit will reflect the remaining value after the restocking fee. If you need further assistance, please let us know, and we'd be happy to help.
+    Unfortunately, as the purchase was made during our Black Friday sale, our policy allows refunds 
+    only in the form of store credit for such holiday purchases. Since the product is opened but 
+    unused, you would still be eligible for a refund if it was not a 'final sale' item, even without 
+    the receipt, provided we can confirm your purchase in our system. However, as you're located in 
+    Canada, the refund will incur a 10% restocking fee.
+    Please note that we cannot issue a refund back to your credit card in this case, but the store 
+    credit will reflect the remaining value after the restocking fee. If you need further assistance, 
+    please let us know, and we'd be happy to help.
   potential_challenges: >
-    - Complex Refund Policy Application: The case involves several overlapping rules, including special sales terms (Black Friday), international restocking fees, and the customer's refusal of store credit.
-    - Missing Information: The user doesn't have the original receipt, requiring the model to handle an edge case by proposing a possible workaround (finding the transaction in the system).
-    - Multiple Policy Violations and Exceptions: The headphones were purchased on sale, the packaging was opened, and the return is international—all of which add complexity and involve multiple policy elements.
-    - Emotional Handling: The user is likely dissatisfied with the idea of store credit, so the response must balance clarity of policy with a tone that tries to retain customer satisfaction.
-    - Specificity of Action: The model must understand the multiple restrictions (e.g., store credit-only refunds for Black Friday purchases) and communicate them in a way that doesn't frustrate the customer further.
+    - Complex Refund Policy Application: The case involves several overlapping rules, including 
+    special     sales terms (Black Friday), international restocking fees, and the customer's 
+    refusal of store credit.
+    - Missing Information: The user doesn't have the original receipt, requiring the model to handle 
+    an edge case by proposing a possible workaround (finding the transaction in the system).
+    - Multiple Policy Violations and Exceptions: The headphones were purchased on sale, the packaging 
+    was opened, and the return is international—all of which add complexity and involve multiple 
+    policy elements.
+    - Emotional Handling: The user is likely dissatisfied with the idea of store credit, so the 
+    response must balance clarity of policy with a tone that tries to retain customer satisfaction.
+    - Specificity of Action: The model must understand the multiple restrictions (e.g., store 
+    credit-only refunds for Black Friday purchases) and communicate them in a way that doesn't 
+    frustrate the customer further.
   difficulty_level: hard
 
 - case_id: 005
   category: instruction following
   sub_category: Customer Interaction and Support
   system_prompt: >
-    You are a customer service representative for an online store. The company has the following refund protocols:
+    You are a customer service representative for an online store. The company has the following 
+    refund protocols:
       - No refund for perishable products.
       - 30 days refund policy for electronics from the date of purchase.
       - Full refund issued to the original payment method (cash, credit card, or gift card).
-      - For refunds processed via credit card, allow 3-5 business days for the amount to reflect in the customer's account.
+      - For refunds processed via credit card, allow 3-5 business days for the amount to reflect in 
+      the customer's account.
       - The product must be in its original packaging and unused for a valid refund.
-      - For partially defective products, a partial refund may be issued based on the defect's severity and if the item is still usable.
-      - If the original payment method was a combination of gift card and another method (e.g., credit card), refunds will be processed proportionally.
+      - For partially defective products, a partial refund may be issued based on the defect's 
+      severity and if the item is still usable.
+      - If the original payment method was a combination of gift card and another method 
+      (e.g., credit card), refunds will be processed proportionally.
   instruction: >
-    I bought a blender and a set of kitchen knives three weeks ago. The blender doesn't work properly—it only blends on one speed and makes a strange noise. The knives are fine, but I didn't end up using them. I paid for the blender using a combination of a gift card and my credit card, and the knives with cash.
-    I also ordered some fresh produce in the same purchase, which arrived damaged, and I didn't bother requesting a refund at the time because I thought it was just a one-time issue. 
-    Can I get a refund for the blender and the produce? Also, if I return the knives, can I get a refund for them in cash?
+    I bought a blender and a set of kitchen knives three weeks ago. The blender doesn't work 
+    properly—it only blends on one speed and makes a strange noise. The knives are fine, but I didn't 
+    end up using them. I paid for the blender using a combination of a gift card and my credit card, 
+    and the knives with cash.
+    I also ordered some fresh produce in the same purchase, which arrived damaged, and I didn't bother 
+    requesting a refund at the time because I thought it was just a one-time issue. 
+    Can I get a refund for the blender and the produce? Also, if I return the knives, can I get a 
+    refund for them in cash?
   expected_response: >
     Thank you for contacting us. Let's go through your situation step by step.
-    1. **Blender**: Since the blender is defective, you are eligible for a partial refund based on the defect's severity, as per our policy. We would need more information to assess the level of the defect. The refund will be issued proportionally to the payment methods you used—part will be refunded to your gift card and part to your credit card.
-    2. **Produce**: Unfortunately, per our policy, we cannot issue a refund for perishable products such as fresh produce, even if they were damaged upon arrival.
-    3. **Knives**: Since the knives are unused and still in their original packaging, you are eligible for a refund within the 30-day window. However, because they were paid for in cash, the refund will be issued in cash.
-    Please let us know if you'd like to proceed with the refund for the blender and knives, and if you need help assessing the blender's defect for the partial refund.
+    1. **Blender**: Since the blender is defective, you are eligible for a partial refund based on 
+    the defect's severity, as per our policy. We would need more information to assess the level of 
+    the defect. The refund will be issued proportionally to the payment methods you used—part will 
+    be refunded to your gift card and part to your credit card.
+    2. **Produce**: Unfortunately, per our policy, we cannot issue a refund for perishable products 
+    such as fresh produce, even if they were damaged upon arrival.
+    3. **Knives**: Since the knives are unused and still in their original packaging, you are eligible 
+    for a refund within the 30-day window. However, because they were paid for in cash, the refund will 
+    be issued in cash.
+    Please let us know if you'd like to proceed with the refund for the blender and knives, and if you 
+    need help assessing the blender's defect for the partial refund.
   potential_challenges: >
-    Multiple Products with Different Policies: The user is asking about a refund for three different types of items (electronics, perishable goods, and unused non-perishable goods), all of which fall under distinct refund policies.
-    Partial Refunds: The defective blender introduces the complexity of a partial refund based on the defect's severity.
-    Proportional Refund Calculation: The user used multiple payment methods (gift card and credit card), requiring the model to understand how to split the refund proportionally.
-    Non-Refundable Item: The user mentions damaged produce, but the model needs to recognize that perishables are non-refundable based on policy.
-    Mixed Payment Methods: Handling different payment methods (cash, gift card, and credit card) with different refund protocols adds complexity.
-    Polite and Clear Response: The response needs to be respectful, polite, and thorough in explaining the reasoning behind each refund decision.
+    Multiple Products with Different Policies: The user is asking about a refund for three different 
+    types of items (electronics, perishable goods, and unused non-perishable goods), all of which 
+    fall under distinct refund policies.
+    Partial Refunds: The defective blender introduces the complexity of a partial refund based on the 
+    defect's severity.
+    Proportional Refund Calculation: The user used multiple payment methods (gift card and credit 
+    card), requiring the model to understand how to split the refund proportionally.
+    Non-Refundable Item: The user mentions damaged produce, but the model needs to recognize that 
+    perishables are non-refundable based on policy.
+    Mixed Payment Methods: Handling different payment methods (cash, gift card, and credit card) 
+    with different refund protocols adds complexity.
+    Polite and Clear Response: The response needs to be respectful, polite, and thorough in 
+    explaining the reasoning behind each refund decision.
   difficulty_level: hard

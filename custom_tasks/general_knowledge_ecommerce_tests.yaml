@@ -1,77 +1,122 @@
-###########################################################################################################
-# The tests are considered a general knowledge task.                                                      #
-#                                                                                                         #
-#   - Commonly Known Concepts: The difference between SSDs and HDDs is widely known and can               #
-#               be considered general knowledge within the domain of technology, 
-#               particularly in consumer electronics. This type of question and response doesn't
-#               require domain-specific expertise beyond basic IT or computing literacy.
-#
-#   - Widely Available Information: The information presented here is easily accessible through 
-#               various sources like websites, manuals, or technical documentation. 
-#               It’s not unique or specialized information that only professionals in a particular 
-#               field would know.
-#   - Basic Definitions and Comparisons: The answer is a basic comparison of two types of storage 
-#               devices, focusing on fundamental aspects such as speed, durability, 
-#               and storage technology. It doesn’t involve in-depth technical details like 
-#               storage architecture, performance benchmarking, or specific use 
-#               cases in enterprise-level systems, which would make it more specialized.
-#
-# In sum, tasks like this require retrieving or paraphrasing widely available information, making them 
-# more suitable for a general-purpose LLM rather than a specialized one.
-##########################################################################################################
+#####################################################################################################
+# The tests are considered a general knowledge task.                                                #
+#                                                                                                   #
+#   - Commonly Known Concepts: The difference between SSDs and HDDs is widely known and can         #
+#               be considered general knowledge within the domain of technology,                    #
+#               particularly in consumer electronics. This type of question and response doesn't    #
+#               require domain-specific expertise beyond basic IT or computing literacy.            #
+#                                                                                                   #
+#   - Widely Available Information: The information presented here is easily accessible through     #
+#               various sources like websites, manuals, or technical documentation.                 #
+#               It’s not unique or specialized information that only professionals in a particular  #
+#               field would know.                                                                   #
+#   - Basic Definitions and Comparisons: The answer is a basic comparison of two types of storage   #
+#               devices, focusing on fundamental aspects such as speed, durability,                 #
+#               and storage technology. It doesn’t involve in-depth technical details like          #
+#               storage architecture, performance benchmarking, or specific use                     #
+#               cases in enterprise-level systems, which would make it more specialized.            #
+#                                                                                                   #
+# In sum, tasks like this require retrieving or paraphrasing widely available information, making   #
+# them                                                                                              #
+# more suitable for a general-purpose LLM rather than a specialized one.                            #
+#####################################################################################################
+
 
 - case_id: 001
   category: General Knowledge
   sub_category: Product Information Understanding and Generation
   system_prompt: >
-    You are a helpful assistant with expertise in providing detailed product information, technical definitions, and in-depth comparisons of computer hardware.
+    You are a helpful assistant with expertise in providing detailed product information, technical 
+    definitions, and in-depth comparisons of computer hardware.
   instruction: >
-    Can you explain the differences between SSDs and HDDs in terms of performance, lifespan, power consumption, and suitability for different use cases? I want to understand which would be better for gaming, media storage, and server environments.
+    Can you explain the differences between SSDs and HDDs in terms of performance, lifespan, power 
+    consumption, and suitability for different use cases? I want to understand which would be better 
+    for gaming, media storage, and server environments.
   expected_response: >
     SSDs (Solid State Drives) and HDDs (Hard Disk Drives) differ in several key areas:
-    1. **Performance**: SSDs use NAND-based flash memory, offering significantly faster read and write speeds compared to HDDs, which rely on spinning magnetic disks and mechanical arms to access data. SSDs typically have lower latency and higher throughput, making them ideal for tasks requiring fast data access, such as gaming, booting an operating system, or running applications.
-    2. **Lifespan**: SSDs have a limited number of write cycles due to the nature of flash memory, though modern SSDs are built to last for many years under normal consumer use. In contrast, HDDs have mechanical parts, which makes them prone to wear and tear over time, especially if subjected to physical shock or vibration. That said, the lifespan of both technologies can vary depending on usage patterns.
-    3. **Power Consumption**: SSDs consume less power because they have no moving parts, making them more energy-efficient, particularly in portable devices such as laptops. HDDs, on the other hand, require more power to spin their disks and move read/write heads, leading to higher energy usage.
+    1. **Performance**: SSDs use NAND-based flash memory, offering significantly faster read and 
+    write speeds compared to HDDs, which rely on spinning magnetic disks and mechanical arms to access 
+    data. SSDs typically have lower latency and higher throughput, making them ideal for tasks 
+    requiring fast data access, such as gaming, booting an operating system, or running applications.
+    2. **Lifespan**: SSDs have a limited number of write cycles due to the nature of flash memory, 
+    though modern SSDs are built to last for many years under normal consumer use. In contrast, HDDs 
+    have mechanical parts, which makes them prone to wear and tear over time, especially if subjected 
+    to physical shock or vibration. That said, the lifespan of both technologies can vary depending 
+    on usage patterns.
+    3. **Power Consumption**: SSDs consume less power because they have no moving parts, making them 
+    more energy-efficient, particularly in portable devices such as laptops. HDDs, on the other hand, 
+    require more power to spin their disks and move read/write heads, leading to higher energy usage.
     4. **Suitability for Use Cases**:
-      - **Gaming**: SSDs are generally better for gaming due to faster load times, improved performance in texture streaming, and reduced stuttering during gameplay. HDDs can still be used for gaming but will result in longer loading times and may impact game performance in open-world or resource-heavy games.
-      - **Media Storage**: HDDs are preferable for storing large amounts of media (e.g., videos, photos, backups) because they offer much larger storage capacities at a lower price per gigabyte. While SSDs can be used for media storage, their higher cost makes HDDs a more economical choice for bulk storage.
-      - **Server Environments**: In server environments, the choice between SSD and HDD depends on the specific application. SSDs are well-suited for high-performance needs such as database access, virtualization, and environments where low latency and high I/O throughput are critical. HDDs are more suitable for archival storage, backup solutions, or applications that require large storage capacities but not necessarily fast access times.
-    In summary, SSDs outperform HDDs in terms of speed and power efficiency, making them better for gaming and high-performance applications, while HDDs are more suitable for cost-effective, large-scale storage such as media archiving and backup solutions in both consumer and enterprise settings.
+      - **Gaming**: SSDs are generally better for gaming due to faster load times, improved performance 
+      in texture streaming, and reduced stuttering during gameplay. HDDs can still be used for gaming 
+      but will result in longer loading times and may impact game performance in open-world or 
+      resource-heavy games.
+      - **Media Storage**: HDDs are preferable for storing large amounts of media (e.g., videos, 
+      photos, backups) because they offer much larger storage capacities at a lower price per gigabyte. 
+      While SSDs can be used for media storage, their higher cost makes HDDs a more economical choice 
+      for bulk storage.
+      - **Server Environments**: In server environments, the choice between SSD and HDD depends on the 
+      specific application. SSDs are well-suited for high-performance needs such as database access, 
+      virtualization, and environments where low latency and high I/O throughput are critical. HDDs are 
+      more suitable for archival storage, backup solutions, or applications that require large storage 
+      capacities but not necessarily fast access times.
+    In summary, SSDs outperform HDDs in terms of speed and power efficiency, making them better for 
+    gaming and high-performance applications, while HDDs are more suitable for cost-effective, 
+    large-scale storage such as media archiving and backup solutions in both consumer and enterprise 
+    settings.
   potential_challenges: >
-    - Multiple Criteria Comparison: The model must compare SSDs and HDDs not only based on performance but also lifespan, power consumption, and suitability for diverse use cases.
-    - Use Case-Specific Recommendations: The model must understand different use cases (gaming, media storage, server environments) and provide tailored recommendations for each.
-    - In-Depth Technical Knowledge: The model needs to provide a more granular technical explanation, particularly about the inner workings of SSDs (e.g., NAND flash memory) and HDDs (e.g., mechanical components), as well as their effects on performance and longevity.
-    - Comprehensive and Detailed Response: The response should be nuanced and cover all angles, requiring the model to balance technical depth with clarity for the user.
+    - Multiple Criteria Comparison: The model must compare SSDs and HDDs not only based on performance 
+    but also lifespan, power consumption, and suitability for diverse use cases.
+    - Use Case-Specific Recommendations: The model must understand different use cases (gaming, media 
+    storage, server environments) and provide tailored recommendations for each.
+    - In-Depth Technical Knowledge: The model needs to provide a more granular technical explanation, 
+    particularly about the inner workings of SSDs (e.g., NAND flash memory) and HDDs (e.g., mechanical 
+    components), as well as their effects on performance and longevity.
+    - Comprehensive and Detailed Response: The response should be nuanced and cover all angles, 
+    requiring the model to balance technical depth with clarity for the user.
   difficulty_level: hard
 
 - case_id: 002
   category: General Knowledge
   sub_category: Product Information Understanding and Generation
-  system_prompt: You are a helpful assistant with expertise in providing detailed product information and technical definitions.
+  system_prompt: You are a helpful assistant with expertise in providing detailed product information 
+  and technical definitions.
   instruction: What does HDMI stand for and what is it used for?
   expected_response: >
-    HDMI stands for High-Definition Multimedia Interface. It is a standard for transmitting high-definition video and audio between devices, such as from a computer, gaming console, or Blu-ray player to a TV or monitor. HDMI cables support high-resolution video and multi-channel audio, allowing for a single cable to carry both signals, making it a convenient way to connect various home entertainment and electronic devices.
+    HDMI stands for High-Definition Multimedia Interface. It is a standard for transmitting 
+    high-definition video and audio between devices, such as from a computer, gaming console, 
+    or Blu-ray player to a TV or monitor. HDMI cables support high-resolution video and multi-channel 
+    audio, allowing for a single cable to carry both signals, making it a convenient way to connect 
+    various home entertainment and electronic devices.
   potential_challenges: null
   difficulty_level: easy
 
 - case_id: 003
   category: General Knowledge
   sub_category: Product Information Understanding and Generation
-  system_prompt: You are a helpful assistant with expertise in providing detailed product information and technical definitions.
+  system_prompt: You are a helpful assistant with expertise in providing detailed product information 
+  and technical definitions.
   instruction: What is the difference between RAM and ROM in a computer?
   expected_response: >
-    RAM (Random Access Memory) is a type of volatile memory that is used to store data temporarily while the computer is running. It allows the CPU to access data quickly for processing tasks, but the data is lost when the computer is turned off.
-    ROM (Read-Only Memory) is non-volatile memory that stores data permanently. It contains essential instructions for the computer's startup process, such as the BIOS. The data in ROM is not lost when the computer is powered off, and it cannot be easily modified or erased.
+    RAM (Random Access Memory) is a type of volatile memory that is used to store data temporarily 
+    while the computer is running. It allows the CPU to access data quickly for processing tasks, 
+    but the data is lost when the computer is turned off.
+    ROM (Read-Only Memory) is non-volatile memory that stores data permanently. It contains essential
+    instructions for the computer's startup process, such as the BIOS. The data in ROM is not lost 
+    when the computer is powered off, and it cannot be easily modified or erased.
   potential_challenges: null
   difficulty_level: easy
 
 - case_id: 004
   category: General Knowledge
   sub_category: Product Information Understanding and Generation
-  system_prompt: You are a helpful assistant with expertise in providing detailed product information and technical definitions.
-  instruction: What are the differences between USB 3.0, USB 3.1, and USB 3.2 in terms of speed, compatibility, and practical use cases?
+  system_prompt: You are a helpful assistant with expertise in providing detailed product information 
+  and technical definitions.
+  instruction: What are the differences between USB 3.0, USB 3.1, and USB 3.2 in terms of speed, 
+  compatibility, and practical use cases?
   expected_response: >
-    USB 3.0, USB 3.1, and USB 3.2 are all versions of the USB standard, but they differ in terms of speed, naming conventions, and compatibility.
+    USB 3.0, USB 3.1, and USB 3.2 are all versions of the USB standard, but they differ in terms 
+    of speed, naming conventions, and compatibility.
     1. **Speed**:
       - **USB 3.0**: Also known as "SuperSpeed USB," it offers transfer speeds of up to 5 Gbps.
       - **USB 3.1**: It was introduced in two versions:
@@ -82,29 +127,51 @@
       - **USB 3.2 Gen 2** (formerly known as USB 3.1 Gen 2) supports 10 Gbps.
       - **USB 3.2 Gen 2x2** allows for transfer speeds of up to 20 Gbps by using two lanes of 10 Gbps.
     2. **Compatibility**:
-      - All USB 3.x versions are backward compatible with older USB versions (USB 2.0, USB 1.1), meaning you can use newer devices with older ports, but they will operate at the slower speeds of the older versions.
-      - However, to take full advantage of the higher speeds (e.g., 10 Gbps or 20 Gbps), both the device and the port must support the higher USB standard.
+      - All USB 3.x versions are backward compatible with older USB versions (USB 2.0, USB 1.1), 
+      meaning you can use newer devices with older ports, but they will operate at the slower speeds 
+      of the older versions.
+      - However, to take full advantage of the higher speeds (e.g., 10 Gbps or 20 Gbps), both the 
+      device and the port must support the higher USB standard.
     3. **Practical Use Cases**:
-      - **USB 3.0/3.1 Gen 1 (5 Gbps)**: Sufficient for most general uses such as connecting external hard drives, USB flash drives, and other peripherals like keyboards and mice. It offers faster data transfer than USB 2.0, making it ideal for transferring large files or backups.
-      - **USB 3.1 Gen 2 (10 Gbps)**: Ideal for higher-performance tasks such as connecting SSDs, fast external drives, or docking stations that require more bandwidth for multiple devices or high-resolution monitors.
-      - **USB 3.2 Gen 2x2 (20 Gbps)**: This is mainly beneficial in high-end applications like video editing, transferring massive data files quickly, or working with external GPUs that demand extremely fast data transfer rates.
+      - **USB 3.0/3.1 Gen 1 (5 Gbps)**: Sufficient for most general uses such as connecting external 
+      hard drives, USB flash drives, and other peripherals like keyboards and mice. It offers faster 
+      data transfer than USB 2.0, making it ideal for transferring large files or backups.
+      - **USB 3.1 Gen 2 (10 Gbps)**: Ideal for higher-performance tasks such as connecting SSDs, 
+      fast external drives, or docking stations that require more bandwidth for multiple devices or 
+      high-resolution monitors.
+      - **USB 3.2 Gen 2x2 (20 Gbps)**: This is mainly beneficial in high-end applications like video 
+      editing, transferring massive data files quickly, or working with external GPUs that demand 
+      extremely fast data transfer rates.
 
-    In summary, USB 3.0 and 3.1 are suitable for everyday tasks, while USB 3.2 and its higher transfer rates are more appropriate for specialized, data-intensive use cases. The key difference lies in the maximum speeds offered, with compatibility being backward across all versions.
+    In summary, USB 3.0 and 3.1 are suitable for everyday tasks, while USB 3.2 and its higher transfer 
+    rates are more appropriate for specialized, data-intensive use cases. The key difference lies in 
+    the maximum speeds offered, with compatibility being backward across all versions.
   potential_challenges: >
-    - Technical Knowledge: The LLM needs to differentiate between versions of a single technology (USB), breaking down speed and naming conventions accurately.
-    - Clarity on Compatibility: The LLM must explain backward compatibility in a straightforward way, making sure the user understands how devices and ports of different standards interact.
-    - Use Cases: The model is expected to connect technical specs to practical applications (e.g., the benefit of higher speeds for certain tasks) without diving into complex architectural considerations or requiring deep system-level understanding.
-    - Naming Complexity: The rebranding of USB standards (e.g., USB 3.1 Gen 1 being equivalent to USB 3.0) adds an additional layer of confusion, making it moderately difficult for the model to explain clearly.
+    - Technical Knowledge: The LLM needs to differentiate between versions of a single technology 
+    (USB), breaking down speed and naming conventions accurately.
+    - Clarity on Compatibility: The LLM must explain backward compatibility in a straightforward way, 
+    making sure the user understands how devices and ports of different standards interact.
+    - Use Cases: The model is expected to connect technical specs to practical applications (e.g., 
+    the benefit of higher speeds for certain tasks) without diving into complex architectural 
+    considerations or requiring deep system-level understanding.
+    - Naming Complexity: The rebranding of USB standards (e.g., USB 3.1 Gen 1 being equivalent to 
+    USB 3.0) adds an additional layer of confusion, making it moderately difficult for the model 
+    to explain clearly.
   difficulty_level: hard
 
 - case_id: 005
   category: General Knowledge
   sub_category: Product Information Understanding and Generation
-  system_prompt: You are a nutrition expert providing detailed information on food ingredients and their health benefits.
-  instruction: What are the differences between saturated and unsaturated fats, and how do they affect heart health?
+  system_prompt: You are a nutrition expert providing detailed information on food ingredients and 
+  their health benefits.
+  instruction: What are the differences between saturated and unsaturated fats, and how do they 
+  affect heart health?
   expected_response: >
-    Saturated fats are solid at room temperature and found in animal products like butter and meat, while unsaturated fats are liquid and come from plants, 
-    such as olive oil and nuts. Saturated fats can raise LDL (bad) cholesterol levels and increase the risk of heart disease, whereas unsaturated fats, 
-    particularly monounsaturated and polyunsaturated fats, can lower LDL cholesterol and improve heart health.
+    Saturated fats are solid at room temperature and found in animal products like butter and meat, 
+    while unsaturated fats are liquid and come from plants, 
+    such as olive oil and nuts. Saturated fats can raise LDL (bad) cholesterol levels and increase 
+    the risk of heart disease, whereas unsaturated fats, 
+    particularly monounsaturated and polyunsaturated fats, can lower LDL cholesterol and improve 
+    heart health.
   potential_challenges: null
   difficulty_level: easy

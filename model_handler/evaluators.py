@@ -43,10 +43,10 @@ class CategoryScorer(BaseScorer):
 
 
 class ChatGPTEvaluator(BaseEvaluator):
-    def __init__(self, model: ChatOpenAI, prompt_template: ChatPromptTemplate, scorer: BaseScorer):
+    def __init__(self, model: ChatOpenAI, prompt_template: ChatPromptTemplate, score_schema: BaseScorer):
         self.model = model
         self.prompt_template = prompt_template
-        self.scorer = scorer
+        self.score_schema = score_schema
 
     def evaluate(self, student_response: str, expected_response: str, **kwargs) -> Dict[str, Any]:
         evaluation_prompt = self.prompt_template.format(
@@ -56,7 +56,7 @@ class ChatGPTEvaluator(BaseEvaluator):
         )
         
         evaluation_result = self.model(evaluation_prompt)
-        score = self.scorer.score(evaluation_result)
+        score = self.score_schema.score(evaluation_result)
         
         return {
             "score": score,
@@ -81,8 +81,8 @@ def run_evaluation(dataset: List[Dict[str, Any]], **kwargs) -> List[Dict[str, An
          )
     chain_llm = prompt_template | llm
 
-    scorer_class = globals()[kwargs.get('scorer', 'NumericalScorer')]
-    scorer = scorer_class()
+    score_schema_class = globals()[kwargs.get('scorer', 'NumericalScorer')]
+    score_schema = score_schema_class()
     
     for ix, record in enumerate(tqdm(dataset)):
         user_prompt = user_prompt_template.format(
@@ -94,9 +94,9 @@ def run_evaluation(dataset: List[Dict[str, Any]], **kwargs) -> List[Dict[str, An
         # Invoke the chain with the actual user instruction
         out = chain_llm.invoke({"system_prompt": system_prompt, "user_prompt": user_prompt})
         out = out.content
-        record_score = scorer.score(out)
+        record_score = score_schema.score(out)
         record["score"] = record_score
-        record["scorer_feedback"] = out
+        record["judge_feedback"] = out
         print(record_score)
         dataset[ix] = record
 

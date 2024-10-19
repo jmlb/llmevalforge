@@ -1,6 +1,5 @@
 import os
 import yaml
-from collections import OrderedDict
 
 
 def load_yaml(fname):
@@ -26,7 +25,7 @@ def load_yaml(fname):
           is a safe way to load YAML content without executing arbitrary 
           code.
     """
-    if os.path.exists(fname):
+    if not os.path.exists(fname):
         raise FileNotFoundError(f"{fname}")
     
     with open(fname, 'r') as file:

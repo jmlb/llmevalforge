@@ -5,6 +5,8 @@ from langchain_core.prompts import ChatPromptTemplate
 
 from task_handler.utils import custom_sort, validate_test_dataset
 
+
+# sorted list of fields in the original test case, a dict
 SORTED_LEGACY_KEYS = ["case_id", 
                "category", 
                "sub_category", 
@@ -13,8 +15,10 @@ SORTED_LEGACY_KEYS = ["case_id",
                "expected_output_length", 
                "expected_response", 
                "difficulty_level"]
+# sorted list of fields added to the case after inference with the candidate model
 SORTED_NEW_KEYS = ["response_candidate_model"]
-SORTED_EVAL_KEYS = ["score", "scorer_feedback"]
+# sorted list of fields added to the case after evaluation with judge-model
+SORTED_EVAL_KEYS = ["score", "judge_feedback"]
 
 
 def run_instruction_following_task(

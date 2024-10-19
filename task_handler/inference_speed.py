@@ -7,6 +7,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from task_handler.utils import custom_sort, validate_test_dataset
 
 
+# sorted list of fields in the original test case, a dict
 SORTED_LEGACY_KEYS = ["case_id", 
                     "category", 
                     "sub_category", 
@@ -15,13 +16,13 @@ SORTED_LEGACY_KEYS = ["case_id",
                     "expected_output_length", 
                     "expected_response", 
                     "difficulty_level"]
-
+# sorted list of fields added to the case after inference with the candidate model
 SORTED_NEW_KEYS = ["response_candidate_model",
                    "inference_time",
                    "output_word_count",
                    "words_per_second"]
-
-SORTED_EVAL_KEYS = ["score", "scorer_feedback"]
+# sorted list of fields added to the case after evaluation with judge-model
+SORTED_EVAL_KEYS = ["score", "judge_feedback"]
 
 
 def run_inference_speed_task(llm: Any, 
@@ -86,7 +87,8 @@ def run_inference_speed_task(llm: Any,
             record["response_candidate_model"] = out
             record["inference_time"] = inference_time
             record["output_word_count"] = word_count
-            record["words_per_second"] = word_count / inference_time if inference_time > 0 else 0
+            wrd_per_sec = word_count / inference_time if inference_time > 0 else 0
+            record["words_per_second"] = wrd_per_sec
         except Exception as error:
             print(f"An error occurred while processing record: {error}")
 

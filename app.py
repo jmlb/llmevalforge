@@ -20,10 +20,12 @@ load_dotenv()
 st.set_page_config(layout="wide")
 st.title("Model Evaluation App")
 
+
 def run_model_on_example(model, example: Dict[str, Any], task_config: Dict[str, Any]) -> str:
     task_func = run_summarization_task  # We're using the summarization task directly
     result = task_func(model, [example], **task_config)
     return result[0]['response_candidate_model']
+
 
 def run_evaluator_on_example(evaluator, example: Dict[str, Any], model_output: str, task_config: Dict[str, Any]) -> Dict[str, Any]:
     example_with_output = example.copy()
@@ -39,6 +41,7 @@ config_file = st.sidebar.file_uploader("Upload config YAML file", type="yaml")
 
 if config_file is not None:
     config = yaml.safe_load(config_file)
+    print()
     evaluator_prompts = load_yaml(config["evaluator"]["prompt_file"])
     config["evaluator"]["system_prompt"] = evaluator_prompts["system_prompt"]
     config["evaluator"]["user_prompt"] = evaluator_prompts["user_prompt"]
