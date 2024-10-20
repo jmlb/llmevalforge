@@ -1,4 +1,7 @@
 .env
 .ipynb_checkpoints
 utils/__pycache__
+__pycache__
+model_handler/__pycache__
+task_handler/__pycache__
 
