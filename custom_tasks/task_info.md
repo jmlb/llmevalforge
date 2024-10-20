@@ -43,7 +43,10 @@ Let's use the example of summarization capability as an example. The goal of the
 
 - `potential_challenges`: Identifies potential difficulties or common errors the candidate model might face, though it's null here. This information could be provided to the judge-LLM as hints about what to evaluate in the candidate model's reponse.
 
-- `difficulty_level`: Describes the expected difficulty level of the task, useful for designing a well-rounded evaluation set. The value can be "easy", "medium", "hard". When analysing the overall performance of the candidate model on the task, you might consider 2 approaches: 1) a flat average of the scores of all cases, 2) a weighted average where the weight is a function of the difficulty level.
+- `difficulty_level`: Describes the expected difficulty level of the task, useful for designing a well-rounded evaluation set. The value can be "easy", "medium", "hard". 
+When analysing the overall performance of the candidate model on the task, you might consider 2 approaches: 
+  1. a flat average of the scores of all cases,
+  2. a weighted average where the weight is a function of the difficulty level.
 
 ## Code to run the task
 
@@ -115,7 +118,7 @@ def run_summarization_task(llm: Any,
         dataset[ix] = custom_sort(record, all_fields)
 
     return dataset
-    ```
+```
 
 ## List of tests
 
