@@ -1,0 +1,16 @@
+description: |
+  The Candidate Model Configuration section defines the settings for the model being evaluated.
+  This includes the model type: whether it's an Ollama or OpenAI model, model name,
+  and generation parameters that control the model's behavior during inference.
+
+field_descriptions:
+  name: Name/identifier of the model to be evaluated
+  type: Type of model service (ollama or openai)
+  temperature: Controls randomness in output (0.0 = deterministic)
+
+model:
+  name: llama3.2:3b
+  type: ollama
+
+parameters:
+  temperature: 0.060000000000000005

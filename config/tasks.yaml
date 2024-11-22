@@ -1,0 +1,48 @@
+description: |
+  The Tasks Configuration section defines the evaluation tasks to be performed. 
+  Each task specifies what type of evaluation to run, which dataset to use, and how to execute the evaluation.
+
+field_descriptions:
+  import_lib: Python module path with the custom task implementation
+  executor: Task executor class name in the custom library
+  dataset_path: Path to evaluation dataset file (must be a yaml file)
+  run_evaluation: Whether to run evaluation for this task
+  task_type: Type of task being evaluated
+
+tasks:
+  summarization:
+    import_lib: tasks.summarization
+    executor: SummarizationTask
+    dataset_path: datasets/summarization_ecommerce_tests.yaml
+    run_evaluation: false
+    task_type: summarization
+
+  instruction_following:
+    import_lib: tasks.instruction_following
+    executor: Instruction_FollowingTask
+    dataset_path: datasets/instruction_following_ecommerce_tests.yaml
+    run_evaluation: false
+    task_type: instruction_following
+
+  general_knowledge:
+    import_lib: tasks.general_knowledge
+    executor: General_KnowledgeTask
+    dataset_path: datasets/general_knowledge_ecommerce_tests.yaml
+    run_evaluation: false
+    task_type: general_knowledge
+
+  ethical_reasoning:
+    import_lib: tasks.ethical_reasoning
+    executor: Ethical_ReasoningTask
+    dataset_path: datasets/ethical_reasoning_ecommerce_tests.yaml
+    run_evaluation: false
+    task_type: ethical_reasoning
+
+  common_sense_reasoning:
+    import_lib: tasks.common_sense_reasoning
+    executor: Common_Sense_ReasoningTask
+    dataset_path: datasets/common_sense_reasoning_ecommerce_tests.yaml
+    run_evaluation: true
+    task_type: common_sense_reasoning  
+
+

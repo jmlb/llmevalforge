@@ -1,0 +1,130 @@
+metadata:
+  name: E-commerce Common Sense Reasoning Dataset
+  version: "1.0"
+  description: |
+    This task is categorized as a common sense reasoning task task where the LLM must answer from a customer query that is vague and ambiguous 
+    Thetask is designed to evaluate a language model's ability to understand abstract concepts and apply them to new, 
+    unfamiliar scenarios.
+    
+    Here's a detailed explanation of what this test is about:
+    Purpose:
+      1. The test aims to assess whether the AI can:
+      2. Grasp abstract concepts from specific examples
+      3. Extract general principles from particular instances
+      4. Apply learned concepts to novel situations
+      5. Demonstrate flexible thinking and problem-solving
+
+    Key Aspects: 
+      - Conceptual Understanding: The AI must understand the underlying principle or concept, not just 
+    memorize specific details.
+      - Transfer Learning: The ability to take knowledge from one context and apply it appropriately in a
+    different context.
+      - Creative Application: Often, the new scenario requires some creative thinking to see how the
+    concept applies.
+
+    In essence, the Abstraction and Generalization test goes beyond simple knowledge retrieval or
+    pattern recognition. It assesses the AI's capacity for higher-order thinking, which is crucial
+    for tasks that require true understanding and adaptability. This type of capability is
+    particularly valuable in real-world applications where AI systems need to handle new,
+    unpredictable situations or generate novel solutions to complex problems.
+  category: common_sense_reasoning
+  created_date: "2024-03-18"
+  author: jmlb
+  tags: 
+    - e-commerce
+    - customer support
+  metrics:
+    - accuracy
+
+
+# Dataset
+test_cases:
+  - case_id: 1
+    category: common_sense_reasoning
+    sub_category: 
+      - search_systems
+      - recommendation_systems
+    system_prompt: |
+      You are an intelligent assistant for an e-commerce website, helping users find products they are interested in.
+    instruction: |
+      I'm looking for something to keep me warm when it's chilly outside, but I don't want anything too bulky.
+    expected_response: |
+      Based on your request, I recommend a lightweight yet warm jacket, such as a down or fleece jacket. 
+      These types of jackets provide insulation without the bulk, making them ideal 
+      for staying warm in cooler weather while maintaining a sleek and comfortable fit.
+    challenges: |
+      - Interpreting the vague requirement of "keeping warm when it's chilly" and translating it into specific product attributes (e.g., insulation and weight).
+      - Understanding the implied preference for something "not bulky" and recommending appropriate products like down or fleece jackets.
+      - Avoiding overly generic responses while providing a clear and specific recommendation.
+    difficulty_level: medium
+
+  - case_id: 2
+    category: common_sense_reasoning
+    sub_category: 
+      - search_systems
+      - recommendation_systems
+    system_prompt: |
+      You are an intelligent assistant for an e-commerce website, helping users find products based on vague descriptions.
+    instruction: I need something for my home office to help with back pain.
+    expected_response: |
+      I recommend an ergonomic office chair with lumbar support. These chairs are designed to maintain 
+      proper posture and reduce strain on your back during long periods of sitting.
+    challenges: |
+      - Inferring that "help with back pain" requires ergonomic features without explicit mention of posture support.
+      - Identifying suitable categories of products (e.g., chairs with lumbar support) from the vague context.
+      - Balancing specificity with conciseness to ensure the recommendation is actionable and relevant.
+    difficulty_level: medium
+
+  - case_id: 3
+    category: common_sense_reasoning
+    sub_category: 
+      - search_systems
+      - recommendation_systems
+    system_prompt: |
+      You are an intelligent assistant for an online fashion store, helping users find clothing items based on unclear requests.
+    instruction: I'm looking for something nice to wear to a wedding, but it shouldn't be too fancy.
+    expected_response: |
+      I recommend a semi-formal or cocktail dress. These options strike the right balance between looking 
+      elegant and not being overly fancy, making them appropriate for most weddings.
+    challenges: |
+      - Understanding the social and cultural nuances of wedding attire and aligning the recommendation with "semi-formal" or "cocktail" styles.
+      - Avoiding overly broad or inappropriate suggestions that may not fit the context of a wedding.
+      - Providing a clear recommendation that balances the "nice" and "not too fancy" requirements.
+    difficulty_level: medium
+
+  - case_id: 4
+    category: common_sense_reasoning
+    sub_category: 
+      - search_systems
+      - recommendation_systems
+    system_prompt: |
+      You are an intelligent assistant for a tech e-commerce platform, helping users find electronic products.
+    instruction: I need a new device for watching movies, but I don't need anything too high-end.
+    expected_response: |
+      I recommend a mid-range tablet or streaming device. These options are affordable, and great for watching 
+      movies without requiring the latest high-end features.
+    challenges: |
+      - Inferring that the user prioritizes affordability and functionality over premium features.
+      - Recommending mid-range products that strike the balance between cost and usability for movie streaming.
+      - Avoiding recommendations that are either too generic or too specific, which could misalign with the user's needs.
+    difficulty_level: easy
+
+  - case_id: 5
+    category: common_sense_reasoning
+    sub_category: 
+      - search_systems
+      - recommendation_systems
+    system_prompt: |
+      You are an intelligent assistant for an e-commerce website specializing in electronics, tasked with helping users who provide unclear or ambiguous product requests.
+    instruction: |
+      I need something that helps me stay productive when I'm traveling, but it shouldn't be too big or heavy. I also need it for presentations and maybe some light editing.
+    expected_response: |
+      I recommend a lightweight 2-in-1 laptop or tablet with a detachable keyboard.
+      These devices offer portability, flexibility for giving presentations, and enough power for light editing 
+      tasks while keeping the weight and size manageable.
+    challenges: |
+      - Parsing the multifaceted requirements: portability, productivity, presentation capabilities, and light editing.
+      - Recommending versatile devices like 2-in-1 laptops or tablets while ensuring they meet all stated criteria.
+      - Balancing the recommendation between performance (for presentations and editing) and portability (weight and size).
+      - Handling the ambiguity in the user's description and aligning the recommendation with their implied needs.
+    difficulty_level: hard

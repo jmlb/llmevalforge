@@ -1,0 +1,117 @@
+description: |
+  """
+  The Evaluator Configuration section defines settings for the model that will evaluate 
+  the outputs of the main model. This evaluator model is responsible for scoring and 
+  providing feedback on the quality of the main model's responses.
+
+  The evaluator prompt takes into consideration all the information provided to the 
+  candidate model for its reponse, and others:
+    - [[system_prompt_candidate_model]]
+    - [[instruction_candidate_model]]
+    - [[response_candidate_model]]
+    - [[expected_response_candidate_model]]
+    - [[challenges]]
+  """
+
+field_descriptions:
+  type: Type of evaluator model service
+  name: Model to use for evaluation
+  api_key_source: Source of API key (env or file)
+  temperature: Controls evaluator's randomness
+  max_tokens: Maximum length of evaluation response
+  evaluator_prompt: template of prompt use by the model evaluator. Placeholders are flagged with [[PLACEHOLDER]]
+
+model:
+  type: openai
+  name: gpt-4o-mini
+  api_key_source: env
+
+parameters:
+  temperature: 0.0
+  max_tokens: 500
+
+# evaluator_prompt: |-
+#   Act as an expert evaluator tasked with assessing the performance of a candidate language model on a specific task.
+#   You will be provided with the context of the task, including the [SYSTEM PROMPT], [INSTRUCTION] provided to the 
+#   candidate model and the [RESPONSE] of the candidate model. 
+#   Additionally, you will be given the [EXPECTED RESPONSE] as a reference for ideal performance.
+
+#   Your evaluation should focus on how well the model [RESPONSE] is aligned with the [EXPECTED RESPONSE], 
+#   and how well it addresses the specified [CHALLENGES] if any, which may include factors like accuracy, 
+#   coherence, completeness, or adherence to specific requirements.
+
+#   Evaluate the [RESPONSE] provided by the model in comparison to the [EXPECTED RESPONSE] and assess 
+#   how effectively it handles the [CHALLENGES] if any.
+
+#   Assign a score between 0 and 5, where:
+#   0: Completely fails to address the task and challenges. Or the [RESPONSE] has references to wordings in the [INSTRUCTION], such as for  
+#   example, the [INSTRUCTION] asks to "write a summary ..." and the [RESPONSE] includes something like: "Here is a summary ..."  
+#   1: Barely addresses the task or challenges, with significant issues.
+#   2: Partially addresses the task or challenges, with many flaws.
+#   3: Adequately addresses the task and challenges, but with noticeable flaws.
+#   4: Mostly addresses the task and challenges, with minor issues.
+#   5: Fully addresses the task and challenges with no significant issues.
+
+#   Provide a clear explanation for the score, highlighting strengths and weaknesses of the [RESPONSE] 
+#   with respect to the [EXPECTED RESPONSE] and strengths of weaknesses in handling the [CHALLENGES].
+
+#   Context:
+
+#   [SYSTEM PROMPT]: [[system_prompt_candidate_model]]
+#   [INSTRUCTION]: [[instruction_candidate_model]]
+#   [RESPONSE]: [[response_candidate_model]]
+#   [EXPECTED RESPONSE]: [[expected_response_candidate_model]]
+#   [CHALLENGES]: [[challenges]]
+
+#   Your response as the evaluator must be formatted as follow:
+#   Evaluation:
+#   **Score**: (0-5)
+#   **Explanation**: (explanation for the score)
+
+evaluator_prompt: |
+  Act as an expert evaluator tasked with assessing the performance of a candidate language model on a specific task. 
+  You will be provided with the following context:
+
+  - **System Prompt:** [[system_prompt_candidate_model]]
+  - **Instruction:** [[instruction_candidate_model]]
+  - **Candidate Response:** [[response_candidate_model]]
+  - **Expected Response:** [[expected_response_candidate_model]]
+  - **Challenges:** [[challenges]]
+
+  Your evaluation should focus on:
+
+  - **Alignment:** How well the [RESPONSE] aligns with the [EXPECTED_RESPONSE].
+  - **Challenges:** How effectively the [RESPONSE] addresses the specified [CHALLENGES], which may include:
+    - Accuracy
+    - Coherence
+    - Completeness
+    - Adherence to specific requirements
+
+  Assign a score between 0 and 5 based on the following criteria:
+
+  - **0:** 
+    - Completely fails to address the task and challenges.
+    - **Includes direct references to the instruction wording.**
+      - *Example:* If the [INSTRUCTION] is "write a summary," and the [RESPONSE] starts with "Here is a summary..."
+    - **Note:** **If the [RESPONSE] includes any direct or indirect references to the [INSTRUCTION], assign a score of 0, regardless of other evaluation criteria.**
+    
+  - **1:** Barely addresses the task or challenges, with significant issues.
+
+  - **2:** Partially addresses the task or challenges, with many flaws.
+
+  - **3:** Adequately addresses the task and challenges, but with noticeable flaws.
+
+  - **4:** Mostly addresses the task and challenges, with minor issues.
+
+  - **5:** Fully addresses the task and challenges with no significant issues.
+
+  Provide a clear explanation for the score:
+    - The **Explanation** should be between **150 and 250 words**.
+    - Ensure that the explanation is clear, concise, and directly addresses the score assigned.
+    - Highlight the key strengths and weaknesses of the [RESPONSE] in relation to the [EXPECTED_RESPONSE] and how well it handled the [CHALLENGES].
+
+  **Your response as the evaluator must be formatted as follows:**
+  
+  Evaluation: 
+    - Score: (0-5) 
+    - Explanation: (explanation for the score)
