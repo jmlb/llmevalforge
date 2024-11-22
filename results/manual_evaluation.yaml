@@ -1,0 +1,26 @@
+- case_id: manual_001
+  category: summarization
+  difficulty_level: easy
+  expected_response: "      Experience the power of portability with this 14\" touchscreen\
+    \ laptop, featuring the latest \n      Intel Core i7 processor, 16GB DDR5 RAM,\
+    \ and a fast 1TB SSD for seamless multitasking and \n      storage. \n      Its\
+    \ lightweight design (1.2kg) and powerful battery make it perfect for working\
+    \ on the go, \n      while Wi-Fi 6E and Thunderbolt 4 ports ensure top-tier connectivity."
+  instruction: "      Generate a product description in paragraph format for a 'High\
+    \ End Laptop' based on the \n      following specs: \n      - Processor: Intel\
+    \ Core i7-1260P, 12-core\n      - RAM: 16GB DDR5\n      - Storage: 1TB SSD\n \
+    \     - Screen: 14\" FHD, Anti-glare, Touchscreen\n      - Battery: 3-cell, 56Wh\n\
+    \      - Weight: 1.2kg\n      - Operating System: Windows 11 Pro\n      - Connectivity:\
+    \ Wi-Fi 6E, Bluetooth 5.2\n      - Ports: 2x Thunderbolt 4, 1x USB-A, 1x HDMI\
+    \ 2.1'"
+  potential_challenges: "      - Port specifications: The model may miss the nuance\
+    \ in the high-speed Thunderbolt 4 ports and\n      HDMI 2.1, potentially confusing\
+    \ them with less capable ports.\n      - Battery: Describing the battery in a\
+    \ consumer-friendly way might result in vague wording \n      without emphasizing\
+    \ battery life or portability.\n      - Weight and dimensions: The model may fail\
+    \ to highlight that the laptop is lightweight and \n      portable, which is crucial\
+    \ for this product."
+  system_prompt: "      You are a product expert helping to generate concise, customer-friendly\
+    \ product descriptions \n      based on given technical specifications. \n   \
+    \   Ensure that the product description is clear, highlights key features, and\
+    \ is suitable for \n      e-commerce platforms."

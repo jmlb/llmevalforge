@@ -1,146 +1,101 @@
-"""
-streamlit run app.py
-"""
-import os
 import streamlit as st
-import yaml
-
-from typing import Dict, Any
-
-# Import functions from _main.py
-from dotenv import load_dotenv
-from main import create_model
-from task_handler.utils import load_yaml
-from model_handler.evaluators import run_evaluation
-# Import the summarization task
-from task_handler.summarization import run_summarization_task
-
-load_dotenv()
-
-st.set_page_config(layout="wide")
-st.title("Model Evaluation App")
+from pathlib import Path
+from lib.config_editor_page import config_editor_page
+from lib.dataset_editor_page import dataset_builder_page
+from lib.automatic_evaluation_page import automatic_evaluation_page
+from lib.manual_evaluation_page import manual_evaluation_page
 
 
-def run_model_on_example(model, example: Dict[str, Any], task_config: Dict[str, Any]) -> str:
-    task_func = run_summarization_task  # We're using the summarization task directly
-    result = task_func(model, [example], **task_config)
-    return result[0]['response_candidate_model']
+# Must be the first Streamlit command
+st.set_page_config(
+    page_title="LLM Evaluation Dashboard",
+    page_icon="🤖",
+    layout="wide",
+    # Hide default sidebar menu
+    menu_items={
+        'Get Help': None,
+        'Report a bug': None,
+        'About': None
+    }
+)
 
+# Hide streamlit default menu and footer
+st.markdown("""
+    <style>
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        /* Hide default sidebar nav */
+        .css-1d391kg {
+            visibility: hidden;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
-def run_evaluator_on_example(evaluator, example: Dict[str, Any], model_output: str, task_config: Dict[str, Any]) -> Dict[str, Any]:
-    example_with_output = example.copy()
-    example_with_output['response_candidate_model'] = model_output
-    result = evaluator([example_with_output], **task_config)
-    return result[0]
+# Load and inject custom CSS
+def load_css():
+    css_file = Path("static/style.css")
+    if css_file.exists():
+        with open(css_file) as f:
+            st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+    else:
+        st.error("CSS file not found!")
 
-# Sidebar for configuration
-st.sidebar.header("Configuration")
+# Initialize session state for navigation
+if 'current_page' not in st.session_state:
+    st.session_state.current_page = "Configuration Editor"
 
-# 1 & 7. Load local YAML file
-config_file = st.sidebar.file_uploader("Upload config YAML file", type="yaml")
+def change_page(page_name):
+    st.session_state.current_page = page_name
 
-if config_file is not None:
-    config = yaml.safe_load(config_file)
-    print()
-    evaluator_prompts = load_yaml(config["evaluator"]["prompt_file"])
-    config["evaluator"]["system_prompt"] = evaluator_prompts["system_prompt"]
-    config["evaluator"]["user_prompt"] = evaluator_prompts["user_prompt"]
-
-    st.sidebar.success("Config file loaded successfully!")
-
-    # Display the name of the student model
-    student_model_name = config['candidate_model']['params']['model']
-    st.sidebar.write(f"Student Model: **{student_model_name}**")
-
-    # 2. Select example task file
-    task_files = ["Random"] + list(config['evaluation_tasks'].keys())
-    task_file = st.sidebar.selectbox("Select task file", task_files)
+def main():
+    """Main app with fancy 3D navigation."""
+    # Load CSS
+    load_css()
     
-    if task_file:
-        if task_file == "Random":
-            # For Random option, create an empty example
-            dataset = [{
-                "case_id": 1,
-                "system_prompt": '',
-                "instruction": '',
-                "expected_response": 'N/A for random prompts'
-            }]
-            task_config = {}
-        else:
-            task_config = config['evaluation_tasks'][task_file]
-            dataset = load_yaml(task_config['dataset_file'])
-            
-        # Display examples on the sidebar
-        st.sidebar.header("Examples")
-        example_options = [f"Case {example['case_id']}" for example in dataset]
-        selected_example = st.sidebar.radio("Select an example", example_options)
-            
-        # Main area
-        st.header("Model Evaluation")
-        
-        # Get the selected example data
-        selected_example_data = next(example for example in dataset if f"Case {example['case_id']}" == selected_example)
-        
-        # Create two columns: one for example details and one for model evaluation
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            st.subheader("Example Details")
-            # Editable text area for system prompt
-            system_prompt = st.text_area("System Prompt", value=selected_example_data['system_prompt'], height=150)
-            
-            # Editable text area for instruction
-            instruction = st.text_area("Instruction", value=selected_example_data['instruction'], height=150)
-            
-            # Update the selected_example_data with potentially edited values
-            selected_example_data['system_prompt'] = system_prompt
-            selected_example_data['instruction'] = instruction
-        
-        with col2:
-            st.subheader("Model Evaluation")
-            
-            # 3 & 4. Button to run test model on selected example
-            if st.button("Run Test Model"):
-                with st.spinner("Running model..."):
-                    # Initialize model
-                    model = create_model(config['candidate_model'])
-                    
-                    # Run model on selected example
-                    model_output = run_model_on_example(model, selected_example_data, task_config)
-                    # 5. Display results
-                    st.write("Expected Output:")
-                    st.text_area("", value=selected_example_data['expected_response'], height=150, disabled=True)
-                    
-                    st.write("Model Output:")
-                    st.text_area("", value=selected_example_data["response_candidate_model"], height=150, disabled=True)
+    # Sidebar title
+    st.sidebar.markdown('<div class="page-title">Navigation</div>', unsafe_allow_html=True)
+    
+    # Navigation container
+    st.sidebar.markdown('<div class="nav-container">', unsafe_allow_html=True)
+    
+    # Navigation buttons
+    pages = {
+        "Configuration Editor": "⚙️",
+        "Datasets Page": "📝",
+        "Manual Evaluation": "✍️",
+        "Automatic Evaluation": "🚀"
+    }
+    
+    # Create navigation buttons
+    for page, icon in pages.items():
+        button_style = "selected" if st.session_state.current_page == page else ""
+        if st.sidebar.button(
+            f"{icon} {page}",
+            key=f"nav_{page.lower().replace(' ', '_')}",
+            help=f"Go to {page}",
+            on_click=change_page,
+            args=(page,),
+            use_container_width=True
+        ):
+            pass  # The on_click handler will handle the page change
+    
+    st.sidebar.markdown('</div>', unsafe_allow_html=True)
 
+    # Display current page based on session state
+    if st.session_state.current_page == "Configuration Editor":
+        config_editor_page()
+    elif st.session_state.current_page == "Datasets Page":
+        dataset_builder_page()
+    elif st.session_state.current_page == "Automatic Evaluation":
+        automatic_evaluation_page()
+    else:
+        manual_evaluation_page()
 
-                    # Save model output for later evaluation
-                    st.session_state.model_output = model_output
-                    st.session_state.selected_example_data = selected_example_data
-                    
-            
-            # 6. Button to run evaluator
-            if st.button("Run Evaluator"):
-                if 'model_output' in st.session_state and 'selected_example_data' in st.session_state:
-                    with st.spinner("Running evaluator..."):
-                        example_data = st.session_state.selected_example_data
-                        evaluation_result = run_evaluation([example_data], **config["evaluator"])
-                        evaluation_result = evaluation_result[0]
-                        st.subheader("Evaluation Results")
-                        st.write(f"Score: {evaluation_result['score']}")
-                        st.write("Score Feedback:")
-                        st.text_area("", value=evaluation_result['scorer_feedback'], height=150, disabled=True)
-                else:
-                    st.warning("Please run the test model first.")
+    # Footer
+    st.sidebar.markdown(
+        '<div class="footer">LLM Evaluation Tool • Version 1.0</div>',
+        unsafe_allow_html=True
+    )
 
-else:
-    st.warning("Please upload a config file to get started.")
-
-# 7. Button to browse current folder and select YAML
-if st.sidebar.button("Browse Local YAML Files"):
-    yaml_files = [f for f in os.listdir('.') if f.endswith('.yaml') or f.endswith('.yml')]
-    selected_yaml = st.sidebar.selectbox("Select a YAML file", yaml_files)
-    if selected_yaml:
-        with open(selected_yaml, 'r') as file:
-            st.sidebar.text_area("YAML Content", file.read(), height=300)
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,242 @@
+metadata:
+  name: E-commerce Product Description Dataset
+  version: '1.0'
+  description: >
+    The task is to instruct the model to take a list of product specifications and transform  them into clear, concise descriptions
+    for customers. The task requires the model  to understand technical product details and condense them into a customer-friendly  format
+    while keeping key features intact.
+  category: summarization
+  created_date: '2024-03-18'
+  author: jmlb
+  tags:
+    - e-commerce
+    - product-description
+    - technical-writing
+  metrics:
+    - clarity
+    - accuracy
+    - conciseness
+
+# Dataset
+test_cases:
+
+  - case_id: 1
+    category: summarization
+    sub_category: Product Information Understanding and Generation
+    system_prompt: >
+      You are a product description expert helping to generate concise, customer-friendly product  descriptions in standard
+      paragraph form based on given technical specifications.  Ensure that the product description is clear, highlights key
+      features, and is suitable for  e-commerce platforms.
+    instruction: >
+      Generate a concise product description in paragraph format for the following product  specifications:  '4K Ultra HD
+      65-inch TV, HDR10+, Dolby Vision, Smart TV with built-in Alexa, 3 HDMI ports, Wi-Fi  enabled, Energy Star certified.'
+    expected_response: >
+      Experience stunning picture quality with this 65-inch 4K Ultra HD Smart TV, featuring HDR10+  and Dolby Vision for vibrant,
+      lifelike visuals.  With built-in Alexa, enjoy hands-free control, and easily connect devices through 3 HDMI ports.  Energy
+      Star certified for energy efficiency.
+    challenges: ''
+    difficulty_level: easy
+    model_response: "Here's a concise product description in paragraph form:\n\n\"Experience stunning visuals and seamless
+      smart home integration with our 65-inch 4K Ultra HD TV. This cutting-edge display boasts HDR10+ and Dolby Vision for
+      breathtaking color accuracy and contrast, while built-in Alexa allows you to control your viewing experience with voice
+      commands. With three HDMI ports, you can easily connect multiple devices and enjoy a wide range of entertainment options.
+      Stay connected to the internet with Wi-Fi enabled capabilities, and rest assured knowing this energy-efficient TV meets
+      Energy Star certification standards. Perfect for home theaters or living rooms, this smart TV is designed to bring you
+      the best viewing experience possible.\""
+    score: 4.0
+    feedback: "Evaluation:\n**Score**: 4  \n**Explanation**: The candidate model's response effectively captures the key features
+      of the product, such as the 4K Ultra HD resolution, HDR10+, Dolby Vision, built-in Alexa, and the number of HDMI ports.
+      It presents the information in a clear and concise manner, which aligns well with the expectations for an e-commerce
+      product description. \n\nHowever, while the response is mostly coherent and highlights the essential features, it could
+      benefit from slightly more emphasis on the benefits of these features, particularly the energy efficiency aspect of
+      being Energy Star certified. The phrase \"Energy Star certified for energy efficiency\" is somewhat tacked on at the
+      end and could be integrated more smoothly into the overall description. \n\nOverall, the response is strong but has
+      minor issues that prevent it from being fully aligned with the expected response. It adequately addresses the challenges
+      of clarity and completeness, but a bit more finesse in integrating all features would elevate it to a perfect score."
+
+  - case_id: 2
+    category: summarization
+    sub_category: Product Information Understanding and Generation
+    system_prompt: >
+      You are a product expert helping to generate concise, customer-friendly product descriptions  based on given technical
+      specifications.  Ensure that the product description is clear, highlights key features, and is suitable for  e-commerce
+      platforms.
+    instruction: >
+      Write a brief product description  in paragraph format for a wireless mouse with the following  specs:  'Bluetooth 5.0,
+      Ergonomic design, Rechargeable battery with 30-day life, Adjustable DPI up to  1600, 2 programmable buttons'.
+    expected_response: >
+      This ergonomic wireless mouse features Bluetooth 5.0, adjustable DPI up to 1600 for precision,  and 2 programmable buttons
+      for customization.  Its rechargeable battery lasts up to 30 days per charge.
+    challenges: ''
+    difficulty_level: easy
+    model_response: Introducing our Wireless Mouse - designed for comfort and precision. With Bluetooth 5.0 technology, you
+      can enjoy seamless connectivity and reliable performance from anywhere in your home or office. The ergonomic design
+      ensures a snug fit in your hand, reducing fatigue and allowing you to work for hours on end without discomfort. Our
+      rechargeable battery boasts an impressive 30-day life, eliminating the need for frequent recharging. Plus, with adjustable
+      DPI up to 1600, you can switch between precise cursor control and smooth scrolling with ease. Take advantage of two
+      programmable buttons to customize your mouse to fit your unique workflow needs.
+    score: 4.0
+    feedback: "Evaluation:\n**Score**: 4  \n**Explanation**: The candidate model's response effectively captures the key features
+      of the wireless mouse, including the ergonomic design, Bluetooth 5.0 connectivity, adjustable DPI, programmable buttons,
+      and the rechargeable battery life. The description is clear and concise, making it suitable for e-commerce platforms,
+      which aligns well with the expectations set by the system prompt.\n\nHowever, there are minor issues that prevent it
+      from achieving a perfect score. The response could benefit from a more engaging opening or a slight rephrasing to enhance
+      the flow. For instance, starting with a phrase that emphasizes the comfort or usability of the mouse could make it more
+      appealing to potential customers. Additionally, while the response includes all the necessary specifications, it could
+      be slightly more customer-friendly by emphasizing the benefits of these features rather than just stating them.\n\n
+      Overall, the response is strong and mostly addresses the task and challenges, but the minor issues in engagement and
+      flow hold it back from a perfect score."
+
+  - case_id: 3
+    category: summarization
+    sub_category: Product Information Understanding and Generation
+    system_prompt: >
+      You are a product expert helping to generate concise, customer-friendly product descriptions  based on given technical
+      specifications.  Ensure that the product description is clear, highlights key features, and is suitable for  e-commerce
+      platforms.
+    instruction: >
+      Generate a product description in paragraph format for a 'High End Laptop' based on the  following specs:  - Processor:
+      Intel Core i7-1260P, 12-core
+      - RAM: 16GB DDR5
+      - Storage: 1TB SSD
+      - Screen: 14" FHD, Anti-glare, Touchscreen
+      - Battery: 3-cell, 56Wh
+      - Weight: 1.2kg
+      - Operating System: Windows 11 Pro
+      - Connectivity: Wi-Fi 6E, Bluetooth 5.2
+      - Ports: 2x Thunderbolt 4, 1x USB-A, 1x HDMI 2.1'
+    expected_response: >
+      Experience the power of portability with this 14" touchscreen laptop, featuring the latest  Intel Core i7 processor,
+      16GB DDR5 RAM, and a fast 1TB SSD for seamless multitasking and  storage.  Its lightweight design (1.2kg) and powerful
+      battery make it perfect for working on the go,  while Wi-Fi 6E and Thunderbolt 4 ports ensure top-tier connectivity.
+    challenges: >
+      - Port specifications: The model may miss the nuance in the high-speed Thunderbolt 4 ports and
+      HDMI 2.1, potentially confusing them with less capable ports.
+      - Battery: Describing the battery in a consumer-friendly way might result in vague wording  without emphasizing battery
+      life or portability.
+      - Weight and dimensions: The model may fail to highlight that the laptop is lightweight and  portable, which is crucial
+      for this product.
+    difficulty_level: hard
+    model_response: "Introducing the ultimate high-end laptop for professionals and power users alike. This exceptional device
+      is powered by an Intel Core i7-1260P processor, boasting a 12-core configuration that delivers unparalleled performance
+      and efficiency. Paired with 16GB of DDR5 RAM, you'll have ample memory to run multiple applications simultaneously without
+      any lag or slowdown.\n\nStorage is handled by a generous 1TB SSD, ensuring lightning-fast loading times and seamless
+      multitasking. The stunning 14\" FHD touchscreen display features an anti-glare coating, providing crystal-clear visuals
+      in any environment. With a 3-cell battery that packs a punch at 56Wh, you can enjoy up to 12 hours of continuous use
+      on a single charge.\n\nWeighing in at just 1.2kg, this laptop is both powerful and portable, making it perfect for working
+      on-the-go or in the office. Running on Windows 11 Pro, you'll have access to a wide range of features and tools designed
+      to help you stay productive and secure. Stay connected with Wi-Fi 6E and Bluetooth 5.2, and enjoy fast data transfer
+      speeds via two Thunderbolt 4 ports, one USB-A port, and an HDMI 2.1 output.\n\nWhether you're a content creator, business
+      owner, or simply someone who demands the best, this high-end laptop is sure to meet your needs. Experience the perfect
+      blend of performance, portability, and features that will take your productivity to new heights."
+    score: 4.0
+    feedback: "Evaluation:\n**Score**: 4  \n**Explanation**: The candidate model's response effectively captures the essence
+      of the high-end laptop's features, aligning well with the expected response. It highlights the key specifications such
+      as the Intel Core i7 processor, 16GB DDR5 RAM, and 1TB SSD, which are crucial for potential buyers. The mention of the
+      14\" touchscreen and the lightweight design (1.2kg) emphasizes portability, which is a significant selling point for
+      this product.\n\nHowever, there are minor issues that prevent a perfect score. The response could have provided more
+      detail regarding the connectivity options, specifically the high-speed capabilities of the Thunderbolt 4 ports and HDMI
+      2.1, which are important for users looking for advanced connectivity. Additionally, while the battery is mentioned,
+      the description lacks specifics about battery life or performance, which could enhance consumer understanding of its
+      portability and usability.\n\nOverall, the response is coherent and customer-friendly, addressing most of the challenges
+      effectively, but it falls short in fully elaborating on the connectivity and battery aspects."
+
+  - case_id: 4
+    category: summarization
+    sub_category: Product Information Understanding and Generation
+    system_prompt: >
+      You are a product expert helping to generate concise, customer-friendly product descriptions  based on given technical
+      specifications.  Ensure that the product description is clear, highlights key features, and is suitable for  e-commerce
+      platforms.
+    instruction: >
+      Create a concise product description in paragraph format from the following technical  specifications of a smart refrigerator:  -
+      Capacity: 22 cu. ft.
+      - Energy Efficiency: ENERGY STAR certified
+      - Features: Smart touchscreen, voice control, interior camera
+      - Shelves: 4 adjustable glass shelves, 2 crisper drawers
+      - Ice/Water Dispenser: Yes, with filter
+      - Temperature Zones: Dual-zone cooling
+      - Dimensions: 36" W x 70" H x 31" D
+      - Wi-Fi Connectivity: Yes
+    expected_response: >
+      This 22 cu. ft. smart refrigerator blends high-tech features with spacious storage.  Control it via voice or touchscreen,
+      and check what's inside using the interior camera, even  when you're away. With dual-zone cooling and ENERGY STAR efficiency,
+      it keeps your food fresh  while saving on energy costs.
+    challenges: >
+      - Smart features: The model might oversimplify or misinterpret the importance of the smart  touchscreen and voice control,
+      underplaying these unique selling points.
+      - Capacity and dimensions: The model might fail to properly emphasize the refrigerator's storage  capacity and size
+      in consumer-friendly terms.
+      - Energy Efficiency: It might miss the significance of ENERGY STAR certification in reducing  electricity bills.
+    difficulty_level: hard
+    model_response: "Introducing the SmartRefrigerator - Your Ultimate Kitchen Companion!\n\nExperience the future of refrigeration
+      with our cutting-edge smart refrigerator, designed to make your life easier and more convenient. With a spacious capacity
+      of 22 cu. ft., you'll have ample room for all your favorite foods and drinks. Not only that, but this ENERGY STAR certified
+      appliance is also energy-efficient, helping you save on your utility bills.\n\nThe SmartRefrigerator boasts an intuitive
+      smart touchscreen interface, allowing you to control temperature zones, monitor humidity levels, and receive notifications
+      right from the comfort of your kitchen. Plus, with voice control integration, you can effortlessly manage your fridge
+      using just your voice. Take a peek inside with our interior camera feature, ensuring you always know what's fresh and
+      what's not.\n\nStay organized with 4 adjustable glass shelves and 2 crisper drawers, perfect for storing fruits, vegetables,
+      and leftovers. Enjoy the convenience of an ice/water dispenser, complete with a built-in filter to keep your drinks
+      cold and fresh. And when it comes to temperature control, our dual-zone cooling system ensures that you can customize
+      the perfect environment for your favorite foods.\n\nWith dimensions measuring 36\" W x 70\" H x 31\" D, this smart refrigerator
+      fits seamlessly into any kitchen space. Plus, with Wi-Fi connectivity, you can access and control your fridge remotely
+      using our mobile app. Upgrade to a smarter way of refrigerating - order the SmartRefrigerator today!"
+    score: 4.0
+    feedback: "Evaluation:\n**Score**: 4  \n**Explanation**: The candidate model's response effectively captures the essence
+      of the product description by highlighting key features such as the smart touchscreen, voice control, and interior camera.
+      It also mentions the ENERGY STAR certification, which is crucial for emphasizing energy efficiency. The description
+      is clear and customer-friendly, making it suitable for e-commerce platforms.\n\nHowever, there are minor issues that
+      prevent it from achieving a perfect score. While the response mentions the dual-zone cooling, it could have elaborated
+      slightly more on how this feature benefits the user in terms of food preservation. Additionally, the response does not
+      explicitly mention the refrigerator's dimensions or the number of shelves and crisper drawers, which are important for
+      consumers considering space and organization. \n\nOverall, the response is strong and mostly addresses the task and
+      challenges, but it could be improved by incorporating more details about the storage capacity and dimensions, as well
+      as a bit more emphasis on the benefits of the smart features."
+
+  - case_id: 5
+    category: summarization
+    sub_category: Product Information Understanding and Generation
+    system_prompt: >
+      You are a product expert helping to generate concise, customer-friendly product descriptions based  on given technical
+      specifications.  Ensure that the product description is clear, highlights key features, and is suitable for  e-commerce
+      platforms. 
+    instruction: >
+      Create a product description in paragraph format for a gaming headset with the following specs:  - Type: Over-ear, wireless
+      - Battery Life: 20 hours per charge
+      - Drivers: 50mm neodymium
+      - Surround Sound: 7.1 virtual surround
+      - Microphone: Detachable, noise-canceling
+      - Connectivity: 2.4GHz wireless, USB-C
+      - Weight: 320g
+    expected_response: >
+      Immerse yourself in gaming with this wireless over-ear headset featuring 7.1 virtual surround sound  and 50mm drivers
+      for rich, detailed audio.  Enjoy up to 20 hours of uninterrupted playtime, and stay connected with 2.4GHz wireless for  low-latency
+      performance.  The detachable noise-canceling mic ensures crystal-clear communication during intense sessions.
+    challenges: >
+      - Surround sound: The LLM might confuse virtual surround sound with actual hardware-based surround  systems, which could
+      lead to misleading descriptions.
+      - Wireless connectivity: The model may fail to mention the specific benefits of 2.4GHz wireless  over other wireless
+      frequencies.
+      - Battery life: The model might simply mention the 20-hour battery without elaborating on its  importance for gamers.
+    difficulty_level: hard
+    model_response: "Experience immersive gaming with our premium over-ear wireless headset, designed to transport you to
+      the next level of gaming excitement. With its sleek and lightweight design, this headset weighs in at just 320g, making
+      it comfortable for extended gaming sessions.\n\nImmerse yourself in 7.1 virtual surround sound, perfectly crafted to
+      simulate the authentic audio experience of a home theater system. The 50mm neodymium drivers deliver crystal-clear highs
+      and deep bass, ensuring that every detail is accurately reproduced.\n\nStay connected with our detachable noise-canceling
+      microphone, perfect for voice chat and online multiplayer sessions. Plus, with up to 20 hours of battery life on a single
+      charge, you can game all day without interruption.\n\n Seamlessly switch between games or take calls using our 2.4GHz
+      wireless connectivity, paired with the convenience of USB-C charging. Whether you're dominating in Fortnite or exploring
+      new worlds in your favorite RPG, this headset has got you covered."
+    score: 4.0
+    feedback: "Evaluation:\n**Score**: 4  \n**Explanation**: The candidate model's response effectively addresses the task
+      of creating a product description for a gaming headset, closely aligning with the expected response. It highlights key
+      features such as the wireless over-ear design, 7.1 virtual surround sound, and the 50mm drivers, which are essential
+      for a gaming headset. The mention of \"up to 20 hours of uninterrupted playtime\" emphasizes the importance of battery
+      life for gamers, which is a significant aspect of the product.\n\nHowever, while the response does mention the 2.4GHz
+      wireless connectivity, it lacks a specific explanation of its advantages over other wireless frequencies, which could
+      enhance the description further. Additionally, the response could have included a more engaging opening or closing statement
+      to make it more customer-friendly and appealing.\n\nOverall, the response is coherent and mostly complete, with only
+      minor issues regarding the depth of information on wireless connectivity. Thus, it scores a 4 for adequately addressing
+      the task and challenges with only slight room for improvement."

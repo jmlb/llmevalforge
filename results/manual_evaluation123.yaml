@@ -1,0 +1,65 @@
+- case_id: '001'
+  category: summarization
+  difficulty_level: easy
+  expected_response: "      Experience the power of portability with this 14\" touchscreen\
+    \ laptop, featuring the latest \n      Intel Core i7 processor, 16GB DDR5 RAM,\
+    \ and a fast 1TB SSD for seamless multitasking and \n      storage. \n      Its\
+    \ lightweight design (1.2kg) and powerful battery make it perfect for working\
+    \ on the go, \n      while Wi-Fi 6E and Thunderbolt 4 ports ensure top-tier connectivity."
+  feedback: '**Score**: 85
+
+    **Explanation**: The actual response is quite detailed and provides a comprehensive
+    overview of the laptop''s features. It goes beyond the expected output by providing
+    additional information such as the specific processor model, the type of display,
+    the battery capacity, the Bluetooth version, the number and types of ports, and
+    the operating system. This could be beneficial for potential buyers who want more
+    detailed specifications. However, the response does not directly address the "power
+    of portability" as mentioned in the expected output, and it does not mention the
+    laptop''s suitability for working on the go. Additionally, the response includes
+    a placeholder for the estimated battery life, which should have been filled in.
+    The response is also significantly longer than the expected output, which may
+    not be ideal for all contexts. Overall, the response is informative and well-written,
+    but it deviates from the expected output in a few key areas.'
+  instruction: "      Generate a product description in paragraph format for a 'High\
+    \ End Laptop' based on the \n      following specs: \n      - Processor: Intel\
+    \ Core i7-1260P, 12-core\n      - RAM: 16GB DDR5\n      - Storage: 1TB SSD\n \
+    \     - Screen: 14\" FHD, Anti-glare, Touchscreen\n      - Battery: 3-cell, 56Wh\n\
+    \      - Weight: 1.2kg\n      - Operating System: Windows 11 Pro\n      - Connectivity:\
+    \ Wi-Fi 6E, Bluetooth 5.2\n      - Ports: 2x Thunderbolt 4, 1x USB-A, 1x HDMI\
+    \ 2.1'"
+  model_response: 'Introducing the ultimate high-end laptop for professionals and
+    power users alike. This exceptional device is powered by an Intel Core i7-1260P
+    processor with a 12-core configuration, delivering unparalleled performance and
+    efficiency. With 16GB of DDR5 RAM and a spacious 1TB SSD storage, you''ll have
+    ample room to store your files, applications, and operating system.
+
+
+    The 14" FHD touchscreen display boasts an anti-glare finish, ensuring vibrant
+    visuals in any environment. The battery life is impressive, with a 3-cell, 56Wh
+    capacity that provides up to [insert estimated battery life] hours of continuous
+    use. Weighing just 1.2kg, this laptop is designed for portability and convenience.
+
+
+    Stay connected with the latest Wi-Fi 6E and Bluetooth 5.2 technology, while enjoying
+    multiple ports for seamless connectivity. Two Thunderbolt 4 ports, one USB-A,
+    and one HDMI 2.1 port provide ample options for connecting your peripherals, monitors,
+    and other devices. With Windows 11 Pro operating system, you''ll have access to
+    a wide range of features and tools designed specifically for professionals.
+
+
+    Whether you''re working on creative projects, managing data-intensive tasks, or
+    simply need a powerful laptop for everyday use, this high-end device has everything
+    you need to succeed. Experience the perfect blend of performance, portability,
+    and connectivity in this exceptional laptop.'
+  potential_challenges: "      - Port specifications: The model may miss the nuance\
+    \ in the high-speed Thunderbolt 4 ports and\n      HDMI 2.1, potentially confusing\
+    \ them with less capable ports.\n      - Battery: Describing the battery in a\
+    \ consumer-friendly way might result in vague wording \n      without emphasizing\
+    \ battery life or portability.\n      - Weight and dimensions: The model may fail\
+    \ to highlight that the laptop is lightweight and \n      portable, which is crucial\
+    \ for this product."
+  score: 85.0
+  system_prompt: "      You are a product expert helping to generate concise, customer-friendly\
+    \ product descriptions \n      based on given technical specifications. \n   \
+    \   Ensure that the product description is clear, highlights key features, and\
+    \ is suitable for \n      e-commerce platforms."
